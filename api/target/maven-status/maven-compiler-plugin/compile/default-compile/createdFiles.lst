@@ -1,0 +1,7 @@
+org/openmrs/module/customhtmlforms/api/impl/CustomHtmlFormsServiceImpl.class
+org/openmrs/module/customhtmlforms/api/CustomHtmlFormsService.class
+org/openmrs/module/customhtmlforms/CustomHtmlFormsActivator.class
+org/openmrs/module/customhtmlforms/CustomHtmlFormsConfig.class
+org/openmrs/module/customhtmlforms/Item.class
+org/openmrs/module/customhtmlforms/api/dao/CustomHtmlFormsDao.class
+org/openmrs/module/customhtmlforms/SmearResult.class

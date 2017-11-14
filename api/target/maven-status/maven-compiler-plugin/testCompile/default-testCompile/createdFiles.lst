@@ -1,0 +1,3 @@
+org/openmrs/module/customhtmlforms/api/CustomHtmlFormsServiceTest.class
+org/openmrs/module/customhtmlforms/api/dao/CustomHtmlFormsDaoTest.class
+org/openmrs/module/customhtmlforms/api/CustomHtmlFormsServiceComponentTest.class

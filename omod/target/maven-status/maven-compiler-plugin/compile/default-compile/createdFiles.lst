@@ -1,0 +1,2 @@
+org/openmrs/module/customhtmlforms/extension/html/AdminList.class
+org/openmrs/module/customhtmlforms/web/controller/CustomHtmlFormsController.class
