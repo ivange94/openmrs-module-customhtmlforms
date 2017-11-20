@@ -14,7 +14,6 @@ import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudR
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
-import org.openmrs.module.webservices.rest.web.v1_0.resource.openmrs2_0.RestConstants2_0;
 
 @Resource(name = RestConstants.VERSION_1 + "/smearresult", supportedClass = SmearResult.class, supportedOpenmrsVersions = { "1.*.*" })
 public class SmearResultResource extends DataDelegatingCrudResource<SmearResult> {
@@ -43,11 +42,6 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 		return null;
 	}
 	
-	@PropertyGetter("display")
-	public String getDisplayString() {
-		return "";
-	}
-	
 	@Override
 	public SmearResult getByUniqueId(String uuid) {
 		return Context.getService(CustomHtmlFormsService.class).getSmearResultByUuid(uuid);
@@ -63,6 +57,11 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 		throw new ResourceDoesNotSupportOperationException("Not yet supported");
 	}
 	
+	@PropertyGetter("display")
+	public String getDisplayString(SmearResult smearResult) {
+		return smearResult.getId() + "";
+	}
+	
 	@Override
 	protected void delete(SmearResult smearResult, String s, RequestContext requestContext) throws ResponseException {
 		throw new ResourceDoesNotSupportOperationException("Not yet supported");
@@ -72,7 +71,7 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 	public void purge(SmearResult smearResult, RequestContext requestContext) throws ResponseException {
 		throw new ResourceDoesNotSupportOperationException("Not yet supported");
 	}
-
+	
 	@Override
 	public String getResourceVersion() {
 		return "1.11.6";

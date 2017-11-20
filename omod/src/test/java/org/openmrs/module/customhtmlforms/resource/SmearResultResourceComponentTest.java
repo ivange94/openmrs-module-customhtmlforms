@@ -26,7 +26,7 @@ public class SmearResultResourceComponentTest extends BaseDelegatingResourceTest
 	
 	@Override
 	public String getDisplayProperty() {
-		return "";
+		return "1";
 	}
 	
 	@Override

@@ -3,6 +3,7 @@ package org.openmrs.module.customhtmlforms.controller;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.module.webservices.rest.SimpleObject;
+import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.MainResourceControllerTest;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,12 @@ public class SmearResultControllerTest extends MainResourceControllerTest {
 	@Override
 	public long getAllCount() {
 		return 1;
+	}
+	
+	@Override
+	@Test(expected = ResourceDoesNotSupportOperationException.class)
+	public void shouldGetAll() throws Exception {
+		super.shouldGetAll();
 	}
 	
 	@Test
