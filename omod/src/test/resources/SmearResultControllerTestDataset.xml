@@ -12,7 +12,7 @@
 -->
 
 <dataset>
-    <customhtmlforms_smear_result customhtmlforms_smear_result_id="1" uuid="1d5476e9-ee2c-427e-95a7-f87294a352ad" creator="1" date_created="2017-10-27 00:00:00.0" voided="false"/>
+    <customhtmlforms_smear_result customhtmlforms_smear_result_id="1" uuid="1d5476e9-ee2c-427e-95a7-f87294a352ad" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0" encounter_location="1" encounter_provider="1" patient="70011"/>
 
     <encounter_type encounter_type_id="1001" name="Encounter for forms" description="Ordering radiology exams" creator="1" date_created="2015-09-09 00:00:00.0" retired="false" uuid="b6eb5073-a470-478a-8b74-bf788485f6af"/>
     <encounter_role encounter_role_id="1001" name="Encounter for forms" description="Provider ordering tests, exams, drugs, ..." creator="1" retired="false" date_created="2015-09-09 14:00:00.0" uuid="890a3f0e-84d5-43f1-8a2f-4da6e1260b07" />
