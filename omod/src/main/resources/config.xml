@@ -25,6 +25,12 @@
 		<class>org.openmrs.module.customhtmlforms.extension.html.AdminList</class>
 	</extension>
 
+
+	<extension>
+		<point>org.openmrs.gutter.tools</point>
+		<class>org.openmrs.module.customhtmlforms.extension.html.GutterListExt</class>
+	</extension>
+
 	<aware_of_modules>
 		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
 	</aware_of_modules>
