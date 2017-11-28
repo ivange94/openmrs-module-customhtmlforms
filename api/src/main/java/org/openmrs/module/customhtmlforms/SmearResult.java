@@ -25,7 +25,7 @@ public class SmearResult extends BaseOpenmrsData {
 	@JoinColumn(name = "encounter_provider")
 	private Provider encounterProvider;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "encounter")
 	private Encounter encounter;
 	
