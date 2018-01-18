@@ -20,6 +20,6 @@ public class CustomHtmlFormsController extends MainResourceController {
 	
 	@Override
 	public String getNamespace() {
-		return "v1/customhtlmforms";
+		return "v1/scustomhtlmforms";
 	}
 }
