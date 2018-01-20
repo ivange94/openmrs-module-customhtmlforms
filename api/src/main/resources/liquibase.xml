@@ -161,5 +161,56 @@
                 baseTableName="customhtmlforms_hiv_test_result" baseColumnNames="patient"
                 referencedTableName="patient" referencedColumnNames="patient_id" />
     </changeSet>
- 
+    <changeSet id="customhtmlforms-4" author="ivange94">
+        <comment>Add custom html forms encounter type</comment>
+        <createTable tableName="customhtmlforms_dst_test_result">
+            <column name="customhtmlforms_dst_test_result_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="char(38)">
+                <constraints nullable="false" unique="true"></constraints>
+            </column>
+            <column name="creator" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="encounter_provider" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="encounter_location" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="encounter" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="patient" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_created" type="DATETIME">
+                <constraints nullable="false" />
+            </column>
+            <column name="encounter_date" type="DATETIME">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                constraintName="customhtmlforms_dst_test_result_creator_fk"
+                baseTableName="customhtmlforms_dst_test_result" baseColumnNames="creator"
+                referencedTableName="provider" referencedColumnNames="provider_id" />
+        <addForeignKeyConstraint
+                constraintName="customhtmlforms_dst_test_result_encounter_provider_fk"
+                baseTableName="customhtmlforms_dst_test_result" baseColumnNames="encounter_provider"
+                referencedTableName="provider" referencedColumnNames="provider_id" />
+        <addForeignKeyConstraint
+                constraintName="customhtmlforms_dst_test_result_encounter_location_fk"
+                baseTableName="customhtmlforms_dst_test_result" baseColumnNames="encounter_location"
+                referencedTableName="location" referencedColumnNames="location_id" />
+        <addForeignKeyConstraint
+                constraintName="customhtmlforms_dst_test_result_encounter_fk"
+                baseTableName="customhtmlforms_dst_test_result" baseColumnNames="encounter"
+                referencedTableName="encounter" referencedColumnNames="encounter_id" />
+        <addForeignKeyConstraint
+                constraintName="customhtmlforms_dst_test_result_patient_fk"
+                baseTableName="customhtmlforms_dst_test_result" baseColumnNames="patient"
+                referencedTableName="patient" referencedColumnNames="patient_id" />
+    </changeSet>
 </databaseChangeLog>

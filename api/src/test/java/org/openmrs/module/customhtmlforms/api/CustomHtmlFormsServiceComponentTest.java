@@ -6,6 +6,7 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.customhtmlforms.DstTestResult;
 import org.openmrs.module.customhtmlforms.HivTestResult;
 import org.openmrs.module.customhtmlforms.SmearResult;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
@@ -27,11 +28,13 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 	
 	private static final Integer EXISTING_HIV_TEST_RESULT_ID = 1;
 	
+	private static final String EXISTING_DST_TEST_RESULT_UUID = "925825cf-6165-4137-ba35-1773a7c25b2e";
+	
+	private static final Integer EXISTING_DST_TEST_RESULT_ID = 1;
+	
 	private static final Integer PROVIDER_ID = 1;
 	
 	private static final Integer LOCATION_ID = 1;
-	
-	private static final Integer PERSON_ID = 70011;
 	
 	private static final String PATIENT_UUID = "d2c1adbf-d9fa-11e5-90c3-08002719a237";
 	
@@ -96,6 +99,29 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 		hivTestResult.setEncounterLocation(encounterLocation);
 		
 		HivTestResult saved = customHtmlFormsService.addHivTestResult(hivTestResult);
+		assertNotNull(saved);
+		assertNotNull(saved.getEncounter());
+		assertNotNull(saved.getEncounter().getLocation());
+		assertThat(saved.getEncounter().getLocation().getId(), is(LOCATION_ID));
+	}
+	
+	@Test
+	public void getDstTestResultByUuid_shouldReturnObjectWithGivenUuid() {
+		DstTestResult dstTestResult = customHtmlFormsService.getDstTestResultByUuid(EXISTING_DST_TEST_RESULT_UUID);
+		
+		assertNotNull(dstTestResult);
+		assertThat(dstTestResult.getId(), is(EXISTING_DST_TEST_RESULT_ID));
+	}
+	
+	@Test
+	public void addDstTestResult_shouldSaveHivTestResultWithEncounterCreated() {
+		DstTestResult dstTestResult = new DstTestResult();
+		dstTestResult.setPatient(patient);
+		dstTestResult.setEncounterDate(encounterDate);
+		dstTestResult.setEncounterProvider(encounterProvider);
+		dstTestResult.setEncounterLocation(encounterLocation);
+		
+		DstTestResult saved = customHtmlFormsService.addDstTestResult(dstTestResult);
 		assertNotNull(saved);
 		assertNotNull(saved.getEncounter());
 		assertNotNull(saved.getEncounter().getLocation());

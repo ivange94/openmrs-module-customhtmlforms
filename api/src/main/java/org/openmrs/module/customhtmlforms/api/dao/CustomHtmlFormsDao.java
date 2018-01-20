@@ -12,6 +12,7 @@ package org.openmrs.module.customhtmlforms.api.dao;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.api.db.hibernate.DbSession;
 import org.openmrs.api.db.hibernate.DbSessionFactory;
+import org.openmrs.module.customhtmlforms.DstTestResult;
 import org.openmrs.module.customhtmlforms.HivTestResult;
 import org.openmrs.module.customhtmlforms.Item;
 import org.openmrs.module.customhtmlforms.SmearResult;
@@ -61,5 +62,19 @@ public class CustomHtmlFormsDao {
 	public HivTestResult saveHivTestResult(HivTestResult hivTestResult) {
 		getSession().saveOrUpdate(hivTestResult);
 		return hivTestResult;
+	}
+	
+	public DstTestResult getDstTestResultByUuid(String uuid) {
+		return (DstTestResult) getSession().createCriteria(DstTestResult.class).add(Restrictions.eq("uuid", uuid))
+		        .uniqueResult();
+	}
+	
+	public List<DstTestResult> getAllDstTestResults() {
+		return (List<DstTestResult>) getSession().createCriteria(DstTestResult.class).list();
+	}
+	
+	public DstTestResult saveDstTestResult(DstTestResult dstTestResult) {
+		getSession().saveOrUpdate(dstTestResult);
+		return dstTestResult;
 	}
 }

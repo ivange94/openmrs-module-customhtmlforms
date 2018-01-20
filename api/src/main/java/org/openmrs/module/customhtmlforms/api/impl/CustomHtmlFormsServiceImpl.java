@@ -13,10 +13,7 @@ import org.openmrs.Encounter;
 import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
 import org.openmrs.api.impl.BaseOpenmrsService;
-import org.openmrs.module.customhtmlforms.CustomHtmlFormsConfig;
-import org.openmrs.module.customhtmlforms.HivTestResult;
-import org.openmrs.module.customhtmlforms.Item;
-import org.openmrs.module.customhtmlforms.SmearResult;
+import org.openmrs.module.customhtmlforms.*;
 import org.openmrs.module.customhtmlforms.api.CustomHtmlFormsService;
 import org.openmrs.module.customhtmlforms.api.dao.CustomHtmlFormsDao;
 
@@ -106,5 +103,32 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 	@Override
 	public List<HivTestResult> getAllHivTestResults() {
 		return dao.getAllHivTestResults();
+	}
+	
+	@Override
+	public DstTestResult getDstTestResultByUuid(String uuid) throws APIException {
+		return dao.getDstTestResultByUuid(uuid);
+	}
+	
+	@Override
+	public List<DstTestResult> getAllDstTestResults() throws APIException {
+		return dao.getAllDstTestResults();
+	}
+	
+	@Override
+	public DstTestResult saveDstTestResult(DstTestResult dstTestResult) throws APIException {
+		return dao.saveDstTestResult(dstTestResult);
+	}
+	
+	@Override
+	public DstTestResult addDstTestResult(DstTestResult dstTestResult) throws APIException {
+		final Encounter encounter = new Encounter();
+		encounter.setPatient(dstTestResult.getPatient());
+		encounter.setEncounterDatetime(dstTestResult.getEncounterDate());
+		encounter.setProvider(config.getEncounterRoleForForms(), dstTestResult.getEncounterProvider());
+		encounter.setEncounterType(config.getEncounterTypeForForms());
+		encounter.setLocation(dstTestResult.getEncounterLocation());
+		dstTestResult.setEncounter(encounter);
+		return saveDstTestResult(dstTestResult);
 	}
 }

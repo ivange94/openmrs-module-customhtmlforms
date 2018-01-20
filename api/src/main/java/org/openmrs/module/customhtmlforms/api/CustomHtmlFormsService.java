@@ -12,10 +12,7 @@ package org.openmrs.module.customhtmlforms.api;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.customhtmlforms.CustomHtmlFormsConfig;
-import org.openmrs.module.customhtmlforms.HivTestResult;
-import org.openmrs.module.customhtmlforms.Item;
-import org.openmrs.module.customhtmlforms.SmearResult;
+import org.openmrs.module.customhtmlforms.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -94,4 +91,25 @@ public interface CustomHtmlFormsService extends OpenmrsService {
 	@Authorized
 	@Transactional
 	HivTestResult addHivTestResult(HivTestResult hivTestResult) throws APIException;
+	
+	/**
+	 * @param uuid
+	 * @return
+	 * @throws APIException
+	 */
+	@Authorized
+	@Transactional(readOnly = true)
+	DstTestResult getDstTestResultByUuid(String uuid) throws APIException;
+	
+	@Authorized
+	@Transactional(readOnly = true)
+	List<DstTestResult> getAllDstTestResults() throws APIException;
+	
+	@Authorized
+	@Transactional
+	DstTestResult saveDstTestResult(DstTestResult dstTestResult) throws APIException;
+	
+	@Authorized
+	@Transactional
+	DstTestResult addDstTestResult(DstTestResult dstTestResult) throws APIException;
 }
