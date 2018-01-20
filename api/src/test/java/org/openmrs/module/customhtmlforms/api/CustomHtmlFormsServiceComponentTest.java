@@ -9,6 +9,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.customhtmlforms.DstTestResult;
 import org.openmrs.module.customhtmlforms.HivTestResult;
 import org.openmrs.module.customhtmlforms.SmearResult;
+import org.openmrs.module.customhtmlforms.TbHivInformation;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,6 +32,10 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 	private static final String EXISTING_DST_TEST_RESULT_UUID = "925825cf-6165-4137-ba35-1773a7c25b2e";
 	
 	private static final Integer EXISTING_DST_TEST_RESULT_ID = 1;
+	
+	private static final String EXISTING_TB_HIV_INFORMATION_UUID = "8b51a784-f3bd-458e-a1f2-56dfa5c3c8c8";
+	
+	private static final Integer EXISTING_TB_HIV_INFORMATION_ID = 1;
 	
 	private static final Integer PROVIDER_ID = 1;
 	
@@ -126,5 +131,14 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 		assertNotNull(saved.getEncounter());
 		assertNotNull(saved.getEncounter().getLocation());
 		assertThat(saved.getEncounter().getLocation().getId(), is(LOCATION_ID));
+	}
+	
+	@Test
+	public void getTbHivInformationByUuid_shouldReturnObjectWithGivenUuid() {
+		TbHivInformation tbHivInformation = customHtmlFormsService
+		        .getTbHivInformationByUuid(EXISTING_TB_HIV_INFORMATION_UUID);
+		
+		assertNotNull(tbHivInformation);
+		assertThat(tbHivInformation.getId(), is(EXISTING_TB_HIV_INFORMATION_ID));
 	}
 }

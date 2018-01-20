@@ -131,4 +131,31 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		dstTestResult.setEncounter(encounter);
 		return saveDstTestResult(dstTestResult);
 	}
+	
+	@Override
+	public TbHivInformation getTbHivInformationByUuid(String uuid) throws APIException {
+		return dao.getTbHivInformationByUuid(uuid);
+	}
+	
+	@Override
+	public List<TbHivInformation> getAllTbHivInformation() throws APIException {
+		return dao.getAllTbInformation();
+	}
+	
+	@Override
+	public TbHivInformation saveTbHivInformation(TbHivInformation tbHivInformation) throws APIException {
+		return dao.saveTbHivInformation(tbHivInformation);
+	}
+	
+	@Override
+	public TbHivInformation addTbHivInformation(TbHivInformation tbHivInformation) throws APIException {
+		final Encounter encounter = new Encounter();
+		encounter.setPatient(tbHivInformation.getPatient());
+		encounter.setEncounterDatetime(tbHivInformation.getEncounterDate());
+		encounter.setProvider(config.getEncounterRoleForForms(), tbHivInformation.getEncounterProvider());
+		encounter.setEncounterType(config.getEncounterTypeForForms());
+		encounter.setLocation(tbHivInformation.getEncounterLocation());
+		tbHivInformation.setEncounter(encounter);
+		return saveTbHivInformation(tbHivInformation);
+	}
 }

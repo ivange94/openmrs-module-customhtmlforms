@@ -112,4 +112,25 @@ public interface CustomHtmlFormsService extends OpenmrsService {
 	@Authorized
 	@Transactional
 	DstTestResult addDstTestResult(DstTestResult dstTestResult) throws APIException;
+	
+	/**
+	 * @param uuid
+	 * @return
+	 * @throws APIException
+	 */
+	@Authorized
+	@Transactional(readOnly = true)
+	TbHivInformation getTbHivInformationByUuid(String uuid) throws APIException;
+	
+	@Authorized
+	@Transactional(readOnly = true)
+	List<TbHivInformation> getAllTbHivInformation() throws APIException;
+	
+	@Authorized
+	@Transactional
+	TbHivInformation saveTbHivInformation(TbHivInformation tbHivInformation) throws APIException;
+	
+	@Authorized
+	@Transactional
+	TbHivInformation addTbHivInformation(TbHivInformation tbHivInformation) throws APIException;
 }
