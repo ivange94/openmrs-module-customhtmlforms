@@ -27,4 +27,6 @@
     <customhtmlforms_dst_test_result customhtmlforms_dst_test_result_id="1" uuid="925825cf-6165-4137-ba35-1773a7c25b2e" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0"/>
 
     <customhtmlforms_tb_hiv_information customhtmlforms_tb_hiv_information_id="1" uuid="8b51a784-f3bd-458e-a1f2-56dfa5c3c8c8" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0"/>
+
+    <customhtmlforms_culture_result customhtmlforms_culture_result_id="1" uuid="a23f02a6-953e-423e-ac3a-48c1c2174cdc" creator="1" date_created="2017-10-27 00:00:00.0" voided="false"/>
 </dataset>

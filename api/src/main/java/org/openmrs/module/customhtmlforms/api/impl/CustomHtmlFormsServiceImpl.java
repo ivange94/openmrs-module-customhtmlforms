@@ -158,4 +158,31 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		tbHivInformation.setEncounter(encounter);
 		return saveTbHivInformation(tbHivInformation);
 	}
+	
+	@Override
+	public CultureResult getCultureResultByUuid(String uuid) throws APIException {
+		return dao.getCultureResultByUuid(uuid);
+	}
+	
+	@Override
+	public List<CultureResult> getAllCultureResults() throws APIException {
+		return dao.getAllCultureResults();
+	}
+	
+	@Override
+	public CultureResult saveCultureResult(CultureResult cultureResult) throws APIException {
+		return dao.saveCultureResult(cultureResult);
+	}
+	
+	@Override
+	public CultureResult addCultureResult(CultureResult cultureResult) throws APIException {
+		final Encounter encounter = new Encounter();
+		encounter.setPatient(cultureResult.getPatient());
+		encounter.setEncounterDatetime(cultureResult.getEncounterDate());
+		encounter.setProvider(config.getEncounterRoleForForms(), cultureResult.getEncounterProvider());
+		encounter.setEncounterType(config.getEncounterTypeForForms());
+		encounter.setLocation(cultureResult.getEncounterLocation());
+		cultureResult.setEncounter(encounter);
+		return saveCultureResult(cultureResult);
+	}
 }

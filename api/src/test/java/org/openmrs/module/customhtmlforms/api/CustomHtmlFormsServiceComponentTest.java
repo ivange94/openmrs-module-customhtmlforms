@@ -6,10 +6,7 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.customhtmlforms.DstTestResult;
-import org.openmrs.module.customhtmlforms.HivTestResult;
-import org.openmrs.module.customhtmlforms.SmearResult;
-import org.openmrs.module.customhtmlforms.TbHivInformation;
+import org.openmrs.module.customhtmlforms.*;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,6 +33,10 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 	private static final String EXISTING_TB_HIV_INFORMATION_UUID = "8b51a784-f3bd-458e-a1f2-56dfa5c3c8c8";
 	
 	private static final Integer EXISTING_TB_HIV_INFORMATION_ID = 1;
+	
+	private static final String EXISTING_CULTURE_RESULT_UUID = "a23f02a6-953e-423e-ac3a-48c1c2174cdc";
+	
+	private static final Integer EXISTING_CULTURE_RESULT_ID = 1;
 	
 	private static final Integer PROVIDER_ID = 1;
 	
@@ -140,5 +141,13 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 		
 		assertNotNull(tbHivInformation);
 		assertThat(tbHivInformation.getId(), is(EXISTING_TB_HIV_INFORMATION_ID));
+	}
+	
+	@Test
+	public void getCultureResultByUuid_shouldReturnObjectWithGivenUuid() {
+		CultureResult cultureResult = customHtmlFormsService.getCultureResultByUuid(EXISTING_CULTURE_RESULT_UUID);
+		
+		assertNotNull(cultureResult);
+		assertThat(cultureResult.getId(), is(EXISTING_CULTURE_RESULT_ID));
 	}
 }

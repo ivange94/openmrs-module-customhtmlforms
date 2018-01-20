@@ -88,4 +88,18 @@ public class CustomHtmlFormsDao {
 		getSession().saveOrUpdate(tbHivInformation);
 		return tbHivInformation;
 	}
+	
+	public CultureResult getCultureResultByUuid(String uuid) {
+		return (CultureResult) getSession().createCriteria(CultureResult.class).add(Restrictions.eq("uuid", uuid))
+		        .uniqueResult();
+	}
+	
+	public List<CultureResult> getAllCultureResults() {
+		return (List<CultureResult>) getSession().createCriteria(CultureResult.class).list();
+	}
+	
+	public CultureResult saveCultureResult(CultureResult cultureResult) {
+		getSession().saveOrUpdate(cultureResult);
+		return cultureResult;
+	}
 }
