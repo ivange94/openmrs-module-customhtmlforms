@@ -13,9 +13,12 @@ import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.customhtmlforms.CustomHtmlFormsConfig;
+import org.openmrs.module.customhtmlforms.HivTestResult;
 import org.openmrs.module.customhtmlforms.Item;
 import org.openmrs.module.customhtmlforms.SmearResult;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * The main service of this module, which is exposed for other modules. See
@@ -70,4 +73,25 @@ public interface CustomHtmlFormsService extends OpenmrsService {
 	@Authorized(CustomHtmlFormsConfig.MODULE_PRIVILEGE)
 	@Transactional
 	SmearResult addSmearResult(SmearResult smearResult);
+	
+	/**
+	 * @param uuid
+	 * @return
+	 * @throws APIException
+	 */
+	@Authorized
+	@Transactional(readOnly = true)
+	HivTestResult getHivTestResultByUuid(String uuid) throws APIException;
+	
+	@Authorized
+	@Transactional(readOnly = true)
+	List<HivTestResult> getAllHivTestResults() throws APIException;
+	
+	@Authorized
+	@Transactional
+	HivTestResult saveHivTestResult(HivTestResult hivTestResult) throws APIException;
+	
+	@Authorized
+	@Transactional
+	HivTestResult addHivTestResult(HivTestResult hivTestResult) throws APIException;
 }

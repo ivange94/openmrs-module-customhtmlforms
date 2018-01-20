@@ -22,4 +22,5 @@
     <patient patient_id="70011" creator="1" date_created="2015-01-01 00:00:00.0" voided="false"/>
     <patient_identifier patient_identifier_id="1" patient_id="70011" identifier="1234" identifier_type="1" preferred="1" location_id="1" creator="1" date_created="2015-01-01 00:00:00.0" voided="false" uuid="1ac98ec8-e9d9-4626-998c-c795c2f0aa9f"/>
 
+    <customhtmlforms_hiv_test_result customhtmlforms_hiv_test_result_id="1" uuid="925825cf-6165-4137-ba35-1773a7c25bb4" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0"/>
 </dataset>

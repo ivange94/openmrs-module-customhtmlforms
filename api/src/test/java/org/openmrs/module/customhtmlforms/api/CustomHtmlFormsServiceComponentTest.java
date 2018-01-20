@@ -6,6 +6,7 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.customhtmlforms.HivTestResult;
 import org.openmrs.module.customhtmlforms.SmearResult;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 	
 	private static final Integer EXISTING_SMEAR_RESULT_ID = 1;
 	
+	private static final String EXISTING_HIV_TEST_RESULT_UUID = "925825cf-6165-4137-ba35-1773a7c25bb4";
+	
+	private static final Integer EXISTING_HIV_TEST_RESULT_ID = 1;
+	
 	private static final Integer PROVIDER_ID = 1;
 	
 	private static final Integer LOCATION_ID = 1;
@@ -33,9 +38,21 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 	@Autowired
 	private CustomHtmlFormsService customHtmlFormsService;
 	
+	Provider encounterProvider;
+	
+	Location encounterLocation;
+	
+	Date encounterDate;
+	
+	Patient patient;
+	
 	@Before
 	public void setUp() throws Exception {
 		executeDataSet("CustomHtmlFormsServiceComponentTestDataset.xml");
+		encounterProvider = Context.getProviderService().getProvider(PROVIDER_ID);
+		encounterLocation = Context.getLocationService().getLocation(LOCATION_ID);
+		encounterDate = new Date();
+		patient = Context.getPatientService().getPatientByUuid(PATIENT_UUID);
 	}
 	
 	@Test
@@ -47,25 +64,7 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 	}
 	
 	@Test
-	public void saveSmearResult_shouldSaveGivenSmearResult() {
-		SmearResult smearResult = new SmearResult();
-		SmearResult saved = customHtmlFormsService.saveSmearResult(smearResult);
-		assertNotNull(saved);
-		assertNotNull(saved.getId());
-	}
-	
-	@Test
 	public void addSmearResult_shouldSaveSmearResultWithEncounterCreated() {
-		Provider encounterProvider = Context.getProviderService().getProvider(PROVIDER_ID);
-		Location encounterLocation = Context.getLocationService().getLocation(LOCATION_ID);
-		Date encounterDate = new Date();
-		Patient patient = Context.getPatientService().getPatientByUuid(PATIENT_UUID);
-		
-		assertNotNull(encounterProvider);
-		assertNotNull(encounterLocation);
-		assertNotNull(patient);
-		assertNotNull(patient.getPerson());
-		assertThat(patient.getPerson().getId(), is(PERSON_ID));
 		
 		SmearResult smearResult = new SmearResult();
 		smearResult.setPatient(patient);
@@ -74,6 +73,29 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 		smearResult.setEncounterLocation(encounterLocation);
 		
 		SmearResult saved = customHtmlFormsService.addSmearResult(smearResult);
+		assertNotNull(saved);
+		assertNotNull(saved.getEncounter());
+		assertNotNull(saved.getEncounter().getLocation());
+		assertThat(saved.getEncounter().getLocation().getId(), is(LOCATION_ID));
+	}
+	
+	@Test
+	public void getHivTestResultByUuid_shouldReturnObjectWithGivenUuid() {
+		HivTestResult hivTestResult = customHtmlFormsService.getHivTestResultByUuid(EXISTING_HIV_TEST_RESULT_UUID);
+		
+		assertNotNull(hivTestResult);
+		assertThat(hivTestResult.getId(), is(EXISTING_HIV_TEST_RESULT_ID));
+	}
+	
+	@Test
+	public void addHivTestResult_shouldSaveHivTestResultWithEncounterCreated() {
+		HivTestResult hivTestResult = new HivTestResult();
+		hivTestResult.setPatient(patient);
+		hivTestResult.setEncounterDate(encounterDate);
+		hivTestResult.setEncounterProvider(encounterProvider);
+		hivTestResult.setEncounterLocation(encounterLocation);
+		
+		HivTestResult saved = customHtmlFormsService.addHivTestResult(hivTestResult);
 		assertNotNull(saved);
 		assertNotNull(saved.getEncounter());
 		assertNotNull(saved.getEncounter().getLocation());

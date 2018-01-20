@@ -14,10 +14,13 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.customhtmlforms.CustomHtmlFormsConfig;
+import org.openmrs.module.customhtmlforms.HivTestResult;
 import org.openmrs.module.customhtmlforms.Item;
 import org.openmrs.module.customhtmlforms.SmearResult;
 import org.openmrs.module.customhtmlforms.api.CustomHtmlFormsService;
 import org.openmrs.module.customhtmlforms.api.dao.CustomHtmlFormsDao;
+
+import java.util.List;
 
 public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements CustomHtmlFormsService {
 	
@@ -76,5 +79,32 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setLocation(smearResult.getEncounterLocation());
 		smearResult.setEncounter(encounter);
 		return saveSmearResult(smearResult);
+	}
+	
+	@Override
+	public HivTestResult getHivTestResultByUuid(String uuid) throws APIException {
+		return dao.getHivTestResultByUuid(uuid);
+	}
+	
+	@Override
+	public HivTestResult saveHivTestResult(HivTestResult hivTestResult) throws APIException {
+		return dao.saveHivTestResult(hivTestResult);
+	}
+	
+	@Override
+	public HivTestResult addHivTestResult(HivTestResult hivTestResult) throws APIException {
+		final Encounter encounter = new Encounter();
+		encounter.setPatient(hivTestResult.getPatient());
+		encounter.setEncounterDatetime(hivTestResult.getEncounterDate());
+		encounter.setProvider(config.getEncounterRoleForForms(), hivTestResult.getEncounterProvider());
+		encounter.setEncounterType(config.getEncounterTypeForForms());
+		encounter.setLocation(hivTestResult.getEncounterLocation());
+		hivTestResult.setEncounter(encounter);
+		return saveHivTestResult(hivTestResult);
+	}
+	
+	@Override
+	public List<HivTestResult> getAllHivTestResults() {
+		return dao.getAllHivTestResults();
 	}
 }

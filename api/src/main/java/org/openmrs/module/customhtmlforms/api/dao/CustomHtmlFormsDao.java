@@ -12,10 +12,13 @@ package org.openmrs.module.customhtmlforms.api.dao;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.api.db.hibernate.DbSession;
 import org.openmrs.api.db.hibernate.DbSessionFactory;
+import org.openmrs.module.customhtmlforms.HivTestResult;
 import org.openmrs.module.customhtmlforms.Item;
 import org.openmrs.module.customhtmlforms.SmearResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository("customhtmlforms.CustomHtmlFormsDao")
 public class CustomHtmlFormsDao {
@@ -44,5 +47,19 @@ public class CustomHtmlFormsDao {
 	public SmearResult saveSmearResult(SmearResult smearResult) {
 		getSession().saveOrUpdate(smearResult);
 		return smearResult;
+	}
+	
+	public HivTestResult getHivTestResultByUuid(String uuid) {
+		return (HivTestResult) getSession().createCriteria(HivTestResult.class).add(Restrictions.eq("uuid", uuid))
+		        .uniqueResult();
+	}
+	
+	public List<HivTestResult> getAllHivTestResults() {
+		return (List<HivTestResult>) getSession().createCriteria(HivTestResult.class).list();
+	}
+	
+	public HivTestResult saveHivTestResult(HivTestResult hivTestResult) {
+		getSession().saveOrUpdate(hivTestResult);
+		return hivTestResult;
 	}
 }
