@@ -65,11 +65,33 @@
 		<property>@MODULE_ID@.cultureResultFormResultConceptID</property>
 		<defaultValue>3</defaultValue>
 		<description>
-			ID of Form attached with Culture Results
+			Concept for CultureResult.result
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.hivTestResultFormID</property>
+		<defaultValue>2</defaultValue>
+		<description>
+			ID of Form attached with HIV Test Result
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.hivTestResultFormResultOneConceptID</property>
+		<defaultValue>2</defaultValue>
+		<description>
+			Concept one for  hiv test result form
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.hivTestResultFormResultTwoConceptID</property>
+		<defaultValue>2</defaultValue>
+		<description>
+			Concept two for  hiv test result form
 		</description>
 	</globalProperty>
 
-	
+
+
 	<!--
 	<dwr>
 		<allow>

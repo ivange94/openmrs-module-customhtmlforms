@@ -139,6 +139,8 @@
             <column name="encounter_date" type="DATETIME">
                 <constraints nullable="false" />
             </column>
+            <column name="result1" type="int"/>
+            <column name="result2" type="int"/>
         </createTable>
         <addForeignKeyConstraint
                 constraintName="customhtmlforms_hiv_test_result_creator_fk"

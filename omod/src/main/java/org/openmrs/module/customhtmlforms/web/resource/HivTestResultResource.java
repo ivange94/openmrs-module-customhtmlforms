@@ -45,29 +45,34 @@ public class HivTestResultResource extends DataDelegatingCrudResource<HivTestRes
 	
 	@Override
 	public HivTestResult getByUniqueId(String uuid) {
-		return null;
+		return Context.getService(CustomHtmlFormsService.class).getHivTestResultByUuid(uuid);
 	}
 	
 	@Override
-	public HivTestResult newDelegate() throws ResourceDoesNotSupportOperationException {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+	public HivTestResult newDelegate()  {
+		return new HivTestResult();
 	}
 	
 	@Override
 	public DelegatingResourceDescription getCreatableProperties() {
 		final DelegatingResourceDescription description = new DelegatingResourceDescription();
-		description.addProperty("name");
+		description.addProperty("encounterDate");
+		description.addProperty("encounterProvider");
+		description.addProperty("encounterLocation");
+		description.addProperty("patient");
+		description.addProperty("result1");
+		description.addProperty("result2");
 		return description;
 	}
 	
 	@Override
 	public HivTestResult save(HivTestResult hivTestResult) {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+		return Context.getService(CustomHtmlFormsService.class).addHivTestResult(hivTestResult);
 	}
 	
 	@PropertyGetter("display")
-	public String getDisplayString(HivTestResult smearResult) {
-		return smearResult.getId() + "";
+	public String getDisplayString(HivTestResult hivTestResult) {
+		return hivTestResult.getId() + "";
 	}
 	
 	@Override

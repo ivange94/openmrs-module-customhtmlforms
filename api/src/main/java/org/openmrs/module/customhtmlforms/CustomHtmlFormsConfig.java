@@ -32,6 +32,12 @@ public class CustomHtmlFormsConfig {
 	
 	private static final String CULTURE_RESULT_FORM_RESULT_CONCEPT_ID_GLOBAL_PROPERTY = "customhtmlforms.cultureResultFormResultConceptID";
 	
+	private static final String HIV_TEST_RESULT_FORM_ID_GLOBAL_PROPERTY = "customhtmlforms.hivTestResultFormID";
+	
+	private static final String HIV_TEST_RESULT_FORM_RESULT_ONE_CONCEPT_ID_GLOBAL_PROPERTY = "customhtmlforms.hivTestResultFormResultOneConceptID";
+	
+	private static final String HIV_TEST_RESULT_FORM_RESULT_TWO_CONCEPT_ID_GLOBAL_PROPERTY = "customhtmlforms.hivTestResultFormResultTwoConceptID";
+	
 	public EncounterType getEncounterTypeForForms() {
 		return Context.getEncounterService().getEncounterTypeByUuid(ENCOUNTER_TYPE_UUID);
 	}
@@ -52,4 +58,25 @@ public class CustomHtmlFormsConfig {
 		final Concept concept = Context.getConceptService().getConcept(conceptId);
 		return concept;
 	}
+	
+	public Form getHivTestResultForm() {
+		final String formId = Context.getAdministrationService().getGlobalProperty(HIV_TEST_RESULT_FORM_ID_GLOBAL_PROPERTY);
+		final Form hivTestResultForm = Context.getFormService().getForm(formId);
+		return hivTestResultForm;
+	}
+	
+	public Concept getHivTestResultFormResultOneConcept() {
+		final String conceptId = Context.getAdministrationService().getGlobalProperty(
+		    HIV_TEST_RESULT_FORM_RESULT_ONE_CONCEPT_ID_GLOBAL_PROPERTY);
+		final Concept concept = Context.getConceptService().getConcept(conceptId);
+		return concept;
+	}
+	
+	public Concept getHivTestResultFormResultTwoConcept() {
+		final String conceptId = Context.getAdministrationService().getGlobalProperty(
+		    HIV_TEST_RESULT_FORM_RESULT_TWO_CONCEPT_ID_GLOBAL_PROPERTY);
+		final Concept concept = Context.getConceptService().getConcept(conceptId);
+		return concept;
+	}
+	
 }

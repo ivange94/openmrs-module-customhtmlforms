@@ -33,6 +33,12 @@ public class HivTestResult extends BaseOpenmrsData {
 	@JoinColumn(name = "patient")
 	private Patient patient;
 	
+	@Column(name = "result1")
+	private Integer result1;
+	
+	@Column(name = "result2")
+	private Integer result2;
+	
 	@Override
 	public Integer getId() {
 		return id;
@@ -81,5 +87,21 @@ public class HivTestResult extends BaseOpenmrsData {
 	
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+	
+	public Integer getResult1() {
+		return result1;
+	}
+	
+	public void setResult1(Integer result1) {
+		this.result1 = result1;
+	}
+	
+	public Integer getResult2() {
+		return result2;
+	}
+	
+	public void setResult2(Integer result2) {
+		this.result2 = result2;
 	}
 }
