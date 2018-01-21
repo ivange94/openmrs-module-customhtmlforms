@@ -300,11 +300,19 @@
             <column name="encounter_date" type="DATETIME">
                 <constraints nullable="false" />
             </column>
+            <column name="changed_by" type="int" defaultValueNumeric="0">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_changed" type="DATETIME">
+                <constraints nullable="true"/>
+            </column>
+            <column name="voided" type="BOOLEAN" defaultValueBoolean="false" >
+                <constraints nullable="false" />
+            </column>
+            <column name="date_voided" type="DATETIME"/>
+            <column name="voided_by" type="int"/>
+            <column name="void_reason" type="varchar(255)"/>
         </createTable>
-        <addForeignKeyConstraint
-                constraintName="customhtmlforms_culture_result_creator_fk"
-                baseTableName="customhtmlforms_culture_result" baseColumnNames="creator"
-                referencedTableName="provider" referencedColumnNames="provider_id" />
         <addForeignKeyConstraint
                 constraintName="customhtmlforms_culture_result_encounter_provider_fk"
                 baseTableName="customhtmlforms_culture_result" baseColumnNames="encounter_provider"
@@ -321,5 +329,14 @@
                 constraintName="customhtmlforms_culture_result_patient_fk"
                 baseTableName="customhtmlforms_culture_result" baseColumnNames="patient"
                 referencedTableName="patient" referencedColumnNames="patient_id" />
+        <addForeignKeyConstraint constraintName="customhtmlforms_culture_result_voided_by_fk"
+                                 baseTableName="customhtmlforms_culture_result" baseColumnNames="voided_by"
+                                 referencedTableName="users" referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint constraintName="customhtmlforms_culture_result_changed_by_fk"
+                                 baseTableName="customhtmlforms_culture_result" baseColumnNames="changed_by"
+                                 referencedTableName="users" referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint constraintName="customhtmlforms_culture_result_creator_fk"
+                                 baseTableName="customhtmlforms_culture_result" baseColumnNames="creator"
+                                 referencedTableName="users" referencedColumnNames="user_id"/>
     </changeSet>
 </databaseChangeLog>

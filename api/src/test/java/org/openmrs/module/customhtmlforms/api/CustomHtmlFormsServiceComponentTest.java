@@ -150,4 +150,19 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 		assertNotNull(cultureResult);
 		assertThat(cultureResult.getId(), is(EXISTING_CULTURE_RESULT_ID));
 	}
+	
+	@Test
+	public void addCultureResult_shouldSaveCultureWithEncounterCreated() {
+		CultureResult cultureResult = new CultureResult();
+		cultureResult.setPatient(patient);
+		cultureResult.setEncounterDate(encounterDate);
+		cultureResult.setEncounterProvider(encounterProvider);
+		cultureResult.setEncounterLocation(encounterLocation);
+		
+		CultureResult saved = customHtmlFormsService.addCultureResult(cultureResult);
+		assertNotNull(saved);
+		assertNotNull(saved.getEncounter());
+		assertNotNull(saved.getEncounter().getLocation());
+		assertThat(saved.getEncounter().getLocation().getId(), is(LOCATION_ID));
+	}
 }

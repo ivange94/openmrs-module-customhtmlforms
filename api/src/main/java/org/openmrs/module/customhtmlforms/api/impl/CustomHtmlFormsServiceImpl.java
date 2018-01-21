@@ -12,11 +12,13 @@ package org.openmrs.module.customhtmlforms.api.impl;
 import org.openmrs.Encounter;
 import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
+import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.customhtmlforms.*;
 import org.openmrs.module.customhtmlforms.api.CustomHtmlFormsService;
 import org.openmrs.module.customhtmlforms.api.dao.CustomHtmlFormsDao;
 
+import java.util.Date;
 import java.util.List;
 
 public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements CustomHtmlFormsService {
@@ -182,7 +184,11 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setProvider(config.getEncounterRoleForForms(), cultureResult.getEncounterProvider());
 		encounter.setEncounterType(config.getEncounterTypeForForms());
 		encounter.setLocation(cultureResult.getEncounterLocation());
-		cultureResult.setEncounter(encounter);
+		encounter.setCreator(Context.getAuthenticatedUser());
+		encounter.setDateCreated(new Date());
+		encounter.setForm(Context.getFormService().getForm(1));
+		Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		cultureResult.setEncounter(saved);
 		return saveCultureResult(cultureResult);
 	}
 }

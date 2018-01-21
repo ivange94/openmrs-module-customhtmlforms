@@ -49,20 +49,23 @@ public class CultureResultResource extends DataDelegatingCrudResource<CultureRes
 	}
 	
 	@Override
-	public CultureResult newDelegate() throws ResourceDoesNotSupportOperationException {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+	public CultureResult newDelegate() {
+		return new CultureResult();
 	}
 	
 	@Override
 	public DelegatingResourceDescription getCreatableProperties() {
 		final DelegatingResourceDescription description = new DelegatingResourceDescription();
-		description.addProperty("name");
+		description.addProperty("encounterDate");
+		description.addProperty("encounterProvider");
+		description.addProperty("encounterLocation");
+		description.addProperty("patient");
 		return description;
 	}
 	
 	@Override
 	public CultureResult save(CultureResult cultureResult) {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+		return Context.getService(CustomHtmlFormsService.class).addCultureResult(cultureResult);
 	}
 	
 	@PropertyGetter("display")
