@@ -312,6 +312,7 @@
             <column name="date_voided" type="DATETIME"/>
             <column name="voided_by" type="int"/>
             <column name="void_reason" type="varchar(255)"/>
+            <column name="result" type="varchar(255)"/>
         </createTable>
         <addForeignKeyConstraint
                 constraintName="customhtmlforms_culture_result_encounter_provider_fk"

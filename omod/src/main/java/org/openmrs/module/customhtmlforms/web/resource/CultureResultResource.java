@@ -60,6 +60,7 @@ public class CultureResultResource extends DataDelegatingCrudResource<CultureRes
 		description.addProperty("encounterProvider");
 		description.addProperty("encounterLocation");
 		description.addProperty("patient");
+		description.addProperty("result");
 		return description;
 	}
 	

@@ -9,7 +9,9 @@
  */
 package org.openmrs.module.customhtmlforms.api.impl;
 
+import org.openmrs.Concept;
 import org.openmrs.Encounter;
+import org.openmrs.Obs;
 import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
@@ -188,6 +190,17 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setDateCreated(new Date());
 		encounter.setForm(Context.getFormService().getForm(1));
 		Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		
+		final Concept conceptForResult = Context.getConceptService().getConcept(3);
+		final Obs obs = new Obs();
+		obs.setConcept(conceptForResult);
+		obs.setPerson(cultureResult.getPatient().getPerson());
+		obs.setEncounter(saved);
+		obs.setValueText(cultureResult.getResult());
+		obs.setCreator(Context.getAuthenticatedUser());
+		obs.setDateCreated(new Date());
+		obs.setObsDatetime(new Date());
+		Context.getObsService().saveObs(obs, "");
 		cultureResult.setEncounter(saved);
 		return saveCultureResult(cultureResult);
 	}

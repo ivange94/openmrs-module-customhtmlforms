@@ -33,6 +33,9 @@ public class CultureResult extends BaseOpenmrsData {
 	@JoinColumn(name = "patient")
 	private Patient patient;
 	
+	@Column(name = "result")
+	private String result;
+	
 	@Override
 	public Integer getId() {
 		return id;
@@ -81,5 +84,13 @@ public class CultureResult extends BaseOpenmrsData {
 	
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+	
+	public void setResult(String result) {
+		this.result = result;
 	}
 }
