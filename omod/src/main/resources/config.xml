@@ -54,18 +54,21 @@
 	</privilege>
 	 /Required Privileges -->
 
-
-	<!-- Required Global Properties 
 	<globalProperty>
-		<property>@MODULE_ID@.someProperty</property>
-		<defaultValue></defaultValue>
+		<property>@MODULE_ID@.cultureResultFormId</property>
+		<defaultValue>1</defaultValue>
 		<description>
-			A description of the global property goes here.  The description
-			should explain enough for administrators to understand the purpose
-			and possible values for the global property.
+			ID of Form attached with Culture Results
 		</description>
 	</globalProperty>
-	/Required Global Properties -->
+	<globalProperty>
+		<property>@MODULE_ID@.cultureResultFormResultConceptID</property>
+		<defaultValue>3</defaultValue>
+		<description>
+			ID of Form attached with Culture Results
+		</description>
+	</globalProperty>
+
 	
 	<!--
 	<dwr>

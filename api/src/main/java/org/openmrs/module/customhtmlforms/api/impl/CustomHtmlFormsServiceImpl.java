@@ -188,18 +188,20 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setLocation(cultureResult.getEncounterLocation());
 		encounter.setCreator(Context.getAuthenticatedUser());
 		encounter.setDateCreated(new Date());
-		encounter.setForm(Context.getFormService().getForm(1));
-		Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		encounter.setForm(config.getCultureResultForm());
+		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
 		
-		final Concept conceptForResult = Context.getConceptService().getConcept(3);
 		final Obs obs = new Obs();
-		obs.setConcept(conceptForResult);
+		obs.setConcept(config.getCultureResultFormResultConcept());
 		obs.setPerson(cultureResult.getPatient().getPerson());
 		obs.setEncounter(saved);
-		obs.setValueText(cultureResult.getResult());
 		obs.setCreator(Context.getAuthenticatedUser());
 		obs.setDateCreated(new Date());
 		obs.setObsDatetime(new Date());
+		
+		final Integer answerConceptId = cultureResult.getResult();
+		Concept answerConcept = Context.getConceptService().getConcept(answerConceptId);
+		obs.setValueCoded(answerConcept);
 		Context.getObsService().saveObs(obs, "");
 		cultureResult.setEncounter(saved);
 		return saveCultureResult(cultureResult);

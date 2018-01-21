@@ -9,8 +9,10 @@
  */
 package org.openmrs.module.customhtmlforms;
 
+import org.openmrs.Concept;
 import org.openmrs.EncounterRole;
 import org.openmrs.EncounterType;
+import org.openmrs.Form;
 import org.openmrs.api.context.Context;
 import org.springframework.stereotype.Component;
 
@@ -20,11 +22,15 @@ import org.springframework.stereotype.Component;
 @Component("customhtmlforms.CustomHtmlFormsConfig")
 public class CustomHtmlFormsConfig {
 	
-	public final static String MODULE_PRIVILEGE = "CustomHtmlForms Privilege";
+	public static final String MODULE_PRIVILEGE = "CustomHtmlForms Privilege";
 	
-	private final static String ENCOUNTER_TYPE_UUID = "b6eb5073-a470-478a-8b74-bf788485f6af";
+	private static final String ENCOUNTER_TYPE_UUID = "b6eb5073-a470-478a-8b74-bf788485f6af";
 	
-	private final static String ENCOUNTER_ROLE_UUID = "890a3f0e-84d5-43f1-8a2f-4da6e1260b07";
+	private static final String ENCOUNTER_ROLE_UUID = "890a3f0e-84d5-43f1-8a2f-4da6e1260b07";
+	
+	private static final String CULTURE_RESULT_FORM_ID_GLOBAL_PROPERTY = "customhtmlforms.cultureResultFormId";
+	
+	private static final String CULTURE_RESULT_FORM_RESULT_CONCEPT_ID_GLOBAL_PROPERTY = "customhtmlforms.cultureResultFormResultConceptID";
 	
 	public EncounterType getEncounterTypeForForms() {
 		return Context.getEncounterService().getEncounterTypeByUuid(ENCOUNTER_TYPE_UUID);
@@ -32,5 +38,18 @@ public class CustomHtmlFormsConfig {
 	
 	public EncounterRole getEncounterRoleForForms() {
 		return Context.getEncounterService().getEncounterRoleByUuid(ENCOUNTER_ROLE_UUID);
+	}
+	
+	public Form getCultureResultForm() {
+		final String formId = Context.getAdministrationService().getGlobalProperty(CULTURE_RESULT_FORM_ID_GLOBAL_PROPERTY);
+		final Form cultureResultForm = Context.getFormService().getForm(formId);
+		return cultureResultForm;
+	}
+	
+	public Concept getCultureResultFormResultConcept() {
+		final String conceptId = Context.getAdministrationService().getGlobalProperty(
+		    CULTURE_RESULT_FORM_RESULT_CONCEPT_ID_GLOBAL_PROPERTY);
+		final Concept concept = Context.getConceptService().getConcept(conceptId);
+		return concept;
 	}
 }

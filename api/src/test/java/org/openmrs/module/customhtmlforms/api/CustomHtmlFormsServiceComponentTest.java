@@ -158,7 +158,7 @@ public class CustomHtmlFormsServiceComponentTest extends BaseModuleContextSensit
 		cultureResult.setEncounterDate(encounterDate);
 		cultureResult.setEncounterProvider(encounterProvider);
 		cultureResult.setEncounterLocation(encounterLocation);
-		cultureResult.setResult("An example culture result");
+		cultureResult.setResult(3);
 		
 		CultureResult saved = customHtmlFormsService.addCultureResult(cultureResult);
 		assertNotNull(saved);
