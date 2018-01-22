@@ -89,6 +89,41 @@
 			Concept two for  hiv test result form
 		</description>
 	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.smearResultFormID</property>
+		<defaultValue>1</defaultValue>
+		<description>
+			Smear result html form ID
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.smearResultSampleID</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Smear result sample concept ID
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.smearResultSampleTypeID</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Smear result sample type ID
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.smearResultAppearanceID</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Smear result appearance ID
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.smearResultResultID</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Smear Result result ID
+		</description>
+	</globalProperty>
 
 
 

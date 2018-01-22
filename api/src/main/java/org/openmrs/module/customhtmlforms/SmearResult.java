@@ -33,6 +33,18 @@ public class SmearResult extends BaseOpenmrsData {
 	@JoinColumn(name = "patient")
 	private Patient patient;
 	
+	@Column(name = "sample_id")
+	private String sampleId;
+	
+	@Column(name = "sample_type")
+	private Integer sampleType;
+	
+	@Column(name = "appearance")
+	private Integer appearance;
+	
+	@Column(name = "result")
+	private Integer result;
+	
 	@Override
 	public Integer getId() {
 		return id;
@@ -81,5 +93,37 @@ public class SmearResult extends BaseOpenmrsData {
 	
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+	
+	public String getSampleId() {
+		return sampleId;
+	}
+	
+	public void setSampleId(String sampleId) {
+		this.sampleId = sampleId;
+	}
+	
+	public Integer getSampleType() {
+		return sampleType;
+	}
+	
+	public void setSampleType(Integer sampleType) {
+		this.sampleType = sampleType;
+	}
+	
+	public Integer getAppearance() {
+		return appearance;
+	}
+	
+	public void setAppearance(Integer appearance) {
+		this.appearance = appearance;
+	}
+	
+	public Integer getResult() {
+		return result;
+	}
+	
+	public void setResult(Integer result) {
+		this.result = result;
 	}
 }

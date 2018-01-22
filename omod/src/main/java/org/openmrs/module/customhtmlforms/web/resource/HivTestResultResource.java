@@ -49,7 +49,7 @@ public class HivTestResultResource extends DataDelegatingCrudResource<HivTestRes
 	}
 	
 	@Override
-	public HivTestResult newDelegate()  {
+	public HivTestResult newDelegate() {
 		return new HivTestResult();
 	}
 	

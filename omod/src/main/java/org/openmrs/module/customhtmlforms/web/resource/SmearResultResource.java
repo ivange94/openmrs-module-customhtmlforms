@@ -48,20 +48,27 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 	}
 	
 	@Override
-	public SmearResult newDelegate() throws ResourceDoesNotSupportOperationException {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+	public SmearResult newDelegate() {
+		return new SmearResult();
 	}
 	
 	@Override
 	public DelegatingResourceDescription getCreatableProperties() {
 		final DelegatingResourceDescription description = new DelegatingResourceDescription();
-		description.addProperty("name");
+		description.addProperty("encounterDate");
+		description.addProperty("encounterProvider");
+		description.addProperty("encounterLocation");
+		description.addProperty("patient");
+		description.addProperty("sampleId");
+		description.addProperty("sampleType");
+		description.addProperty("appearance");
+		description.addProperty("result");
 		return description;
 	}
 	
 	@Override
 	public SmearResult save(SmearResult smearResult) {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+		return Context.getService(CustomHtmlFormsService.class).addSmearResult(smearResult);
 	}
 	
 	@PropertyGetter("display")

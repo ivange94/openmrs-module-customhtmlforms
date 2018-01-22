@@ -38,6 +38,16 @@ public class CustomHtmlFormsConfig {
 	
 	private static final String HIV_TEST_RESULT_FORM_RESULT_TWO_CONCEPT_ID_GLOBAL_PROPERTY = "customhtmlforms.hivTestResultFormResultTwoConceptID";
 	
+	private static final String SMEAR_RESULT_FORM_ID_GLOBAL_PROPERTY = "customhtmlforms.smearResultFormID";
+	
+	private static final String SMEAR_RESULT_SAMPLE_CONCEPT_ID_GLOBAL_PROPERTY = "customhtmlforms.smearResultSampleID";
+	
+	private static final String SMEAR_RESULT_SAMPLE_TYPE_ID_GLOBAL_PROPERTY = "customhtmlforms.smearResultSampleTypeID";
+	
+	private static final String SMEAR_RESULT_APPEARANCE_ID_GLOBAL_PROPERTY = "customhtmlforms.smearResultAppearanceID";
+	
+	private static final String SMEAR_RESULT_RESULT_ID = "customhtmlforms.smearResultResultID";
+	
 	public EncounterType getEncounterTypeForForms() {
 		return Context.getEncounterService().getEncounterTypeByUuid(ENCOUNTER_TYPE_UUID);
 	}
@@ -77,6 +87,39 @@ public class CustomHtmlFormsConfig {
 		    HIV_TEST_RESULT_FORM_RESULT_TWO_CONCEPT_ID_GLOBAL_PROPERTY);
 		final Concept concept = Context.getConceptService().getConcept(conceptId);
 		return concept;
+	}
+	
+	public Form getSmearResultForm() {
+		final String formId = Context.getAdministrationService().getGlobalProperty(SMEAR_RESULT_FORM_ID_GLOBAL_PROPERTY);
+		final Form smearResultForm = Context.getFormService().getForm(formId);
+		return smearResultForm;
+	}
+	
+	public Concept getSmearResultSampleConcept() {
+		final String conceptId = Context.getAdministrationService().getGlobalProperty(
+		    SMEAR_RESULT_SAMPLE_CONCEPT_ID_GLOBAL_PROPERTY);
+		final Concept sampleConcept = Context.getConceptService().getConcept(conceptId);
+		return sampleConcept;
+	}
+	
+	public Concept getSmearResultSampleType() {
+		final String conceptId = Context.getAdministrationService().getGlobalProperty(
+		    SMEAR_RESULT_SAMPLE_TYPE_ID_GLOBAL_PROPERTY);
+		final Concept sampleType = Context.getConceptService().getConcept(conceptId);
+		return sampleType;
+	}
+	
+	public Concept getSmearResultAppearance() {
+		final String conceptId = Context.getAdministrationService().getGlobalProperty(
+		    SMEAR_RESULT_APPEARANCE_ID_GLOBAL_PROPERTY);
+		final Concept appearance = Context.getConceptService().getConcept(conceptId);
+		return appearance;
+	}
+	
+	public Concept getSmearResultResult() {
+		final String conceptId = Context.getAdministrationService().getGlobalProperty(SMEAR_RESULT_RESULT_ID);
+		final Concept result = Context.getConceptService().getConcept(conceptId);
+		return result;
 	}
 	
 }

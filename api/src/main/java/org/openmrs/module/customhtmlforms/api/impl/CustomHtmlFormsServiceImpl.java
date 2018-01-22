@@ -78,7 +78,58 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setProvider(config.getEncounterRoleForForms(), smearResult.getEncounterProvider());
 		encounter.setEncounterType(config.getEncounterTypeForForms());
 		encounter.setLocation(smearResult.getEncounterLocation());
-		smearResult.setEncounter(encounter);
+		encounter.setCreator(Context.getAuthenticatedUser());
+		encounter.setDateCreated(new Date());
+		encounter.setForm(config.getSmearResultForm());
+		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		
+		final Obs obsForSampleID = new Obs();
+		obsForSampleID.setConcept(config.getSmearResultSampleConcept());
+		obsForSampleID.setPerson(smearResult.getPatient().getPerson());
+		obsForSampleID.setEncounter(saved);
+		obsForSampleID.setCreator(Context.getAuthenticatedUser());
+		obsForSampleID.setDateCreated(new Date());
+		obsForSampleID.setObsDatetime(new Date());
+		obsForSampleID.setValueText(smearResult.getSampleId());
+		Context.getObsService().saveObs(obsForSampleID, "");
+		
+		final Obs obsForSampleType = new Obs();
+		obsForSampleType.setConcept(config.getSmearResultSampleType());
+		obsForSampleType.setPerson(smearResult.getPatient().getPerson());
+		obsForSampleType.setEncounter(saved);
+		obsForSampleType.setCreator(Context.getAuthenticatedUser());
+		obsForSampleType.setDateCreated(new Date());
+		obsForSampleType.setObsDatetime(new Date());
+		
+		final Concept sampleTypeAnswerConcept = Context.getConceptService().getConcept(smearResult.getSampleType());
+		obsForSampleType.setValueCoded(sampleTypeAnswerConcept);
+		Context.getObsService().saveObs(obsForSampleType, "");
+		
+		final Obs obsForAppearance = new Obs();
+		obsForAppearance.setConcept(config.getSmearResultAppearance());
+		obsForAppearance.setPerson(smearResult.getPatient().getPerson());
+		obsForAppearance.setEncounter(saved);
+		obsForAppearance.setCreator(Context.getAuthenticatedUser());
+		obsForAppearance.setDateCreated(new Date());
+		obsForAppearance.setObsDatetime(new Date());
+		
+		final Concept answerForAppearance = Context.getConceptService().getConcept(smearResult.getAppearance());
+		obsForAppearance.setValueCoded(answerForAppearance);
+		Context.getObsService().saveObs(obsForAppearance, "");
+		
+		final Obs obsForResult = new Obs();
+		obsForResult.setConcept(config.getSmearResultResult());
+		obsForResult.setPerson(smearResult.getPatient().getPerson());
+		obsForResult.setEncounter(saved);
+		obsForResult.setCreator(Context.getAuthenticatedUser());
+		obsForResult.setDateCreated(new Date());
+		obsForResult.setObsDatetime(new Date());
+		
+		final Concept answerForResult = Context.getConceptService().getConcept(smearResult.getResult());
+		obsForResult.setValueCoded(answerForResult);
+		Context.getObsService().saveObs(obsForResult, "");
+		
+		smearResult.setEncounter(saved);
 		return saveSmearResult(smearResult);
 	}
 	
