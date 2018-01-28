@@ -25,6 +25,7 @@ public class CultureResultResource extends DataDelegatingCrudResource<CultureRes
 			final DelegatingResourceDescription description = new DelegatingResourceDescription();
 			description.addProperty("uuid");
 			description.addProperty("display");
+			description.addProperty("encounter", Representation.REF);
 			description.addSelfLink();
 			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
 			return description;
