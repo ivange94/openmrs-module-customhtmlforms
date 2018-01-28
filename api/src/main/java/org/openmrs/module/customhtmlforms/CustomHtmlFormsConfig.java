@@ -58,7 +58,7 @@ public class CustomHtmlFormsConfig {
 	
 	public Form getCultureResultForm() {
 		final String formId = Context.getAdministrationService().getGlobalProperty(CULTURE_RESULT_FORM_ID_GLOBAL_PROPERTY);
-		final Form cultureResultForm = Context.getFormService().getForm(formId);
+		final Form cultureResultForm = Context.getFormService().getForm(Integer.valueOf(formId));
 		return cultureResultForm;
 	}
 	
