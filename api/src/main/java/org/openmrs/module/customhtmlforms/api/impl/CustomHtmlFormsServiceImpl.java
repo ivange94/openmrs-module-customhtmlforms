@@ -156,32 +156,52 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setForm(config.getHivTestResultForm());
 		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
 		
-		final Obs obs1 = new Obs();
-		obs1.setConcept(config.getHivTestResultFormResultOneConcept());
-		obs1.setPerson(hivTestResult.getPatient().getPerson());
-		obs1.setEncounter(saved);
-		obs1.setCreator(Context.getAuthenticatedUser());
-		obs1.setDateCreated(new Date());
-		obs1.setObsDatetime(new Date());
+		final Obs result1 = new Obs();
+		result1.setConcept(config.getHivTestResultFormResultOneConcept());
+		result1.setPerson(hivTestResult.getPatient().getPerson());
+		result1.setEncounter(saved);
+		result1.setCreator(Context.getAuthenticatedUser());
+		result1.setDateCreated(new Date());
+		result1.setObsDatetime(new Date());
 		
 		final Integer answer1ConceptId = hivTestResult.getResult1();
 		Concept answerConcept = Context.getConceptService().getConcept(answer1ConceptId);
-		obs1.setValueCoded(answerConcept);
-		Context.getObsService().saveObs(obs1, "");
+		result1.setValueCoded(answerConcept);
+		Context.getObsService().saveObs(result1, "");
 		
-		final Obs obs2 = new Obs();
-		obs1.setConcept(config.getHivTestResultFormResultTwoConcept());
-		obs1.setPerson(hivTestResult.getPatient().getPerson());
-		obs1.setEncounter(saved);
-		obs1.setCreator(Context.getAuthenticatedUser());
-		obs1.setDateCreated(new Date());
-		obs1.setObsDatetime(new Date());
+		final Obs result2 = new Obs();
+		result2.setConcept(config.getHivTestResultFormResultTwoConcept());
+		result2.setPerson(hivTestResult.getPatient().getPerson());
+		result2.setEncounter(saved);
+		result2.setCreator(Context.getAuthenticatedUser());
+		result2.setDateCreated(new Date());
+		result2.setObsDatetime(new Date());
 		
 		final Integer answer2ConceptId = hivTestResult.getResult2();
 		final Concept answer2Concept = Context.getConceptService().getConcept(answer2ConceptId);
-		obs2.setValueCoded(answer2Concept);
-		Context.getObsService().saveObs(obs2, "");
+		result2.setValueCoded(answer2Concept);
+		Context.getObsService().saveObs(result2, "");
 		hivTestResult.setEncounter(saved);
+		
+		final Obs date1 = new Obs();
+		date1.setConcept(config.getDateConceptForForms());
+		date1.setPerson(hivTestResult.getPatient().getPerson());
+		date1.setEncounter(saved);
+		date1.setCreator(Context.getAuthenticatedUser());
+		date1.setDateCreated(new Date());
+		date1.setObsDatetime(new Date());
+		date1.setValueDate(hivTestResult.getDate1());
+		Context.getObsService().saveObs(date1, "");
+		
+		final Obs date2 = new Obs();
+		date2.setConcept(config.getDateConceptForForms());
+		date2.setPerson(hivTestResult.getPatient().getPerson());
+		date2.setEncounter(saved);
+		date2.setCreator(Context.getAuthenticatedUser());
+		date2.setDateCreated(new Date());
+		date2.setObsDatetime(new Date());
+		date2.setValueDate(hivTestResult.getDate1());
+		Context.getObsService().saveObs(date2, "");
 		return saveHivTestResult(hivTestResult);
 	}
 	

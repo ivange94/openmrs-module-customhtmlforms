@@ -25,6 +25,7 @@ public class HivTestResultResource extends DataDelegatingCrudResource<HivTestRes
 			final DelegatingResourceDescription description = new DelegatingResourceDescription();
 			description.addProperty("uuid");
 			description.addProperty("display");
+			description.addProperty("encounter");
 			description.addSelfLink();
 			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
 			return description;
@@ -62,6 +63,8 @@ public class HivTestResultResource extends DataDelegatingCrudResource<HivTestRes
 		description.addProperty("patient");
 		description.addProperty("result1");
 		description.addProperty("result2");
+		description.addProperty("date1");
+		description.addProperty("date2");
 		return description;
 	}
 	

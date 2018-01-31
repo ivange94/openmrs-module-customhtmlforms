@@ -124,6 +124,13 @@
 			Smear Result result ID
 		</description>
 	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.dateConceptForForms</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Date concept to be used with Html Forms
+		</description>
+	</globalProperty>
 
 
 

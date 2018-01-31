@@ -48,12 +48,21 @@ public class CustomHtmlFormsConfig {
 	
 	private static final String SMEAR_RESULT_RESULT_ID = "customhtmlforms.smearResultResultID";
 	
+	private static final String DATE_CONCEPT_FOR_FORMS = "customhtmlforms.dateConceptForForms";
+	
 	public EncounterType getEncounterTypeForForms() {
 		return Context.getEncounterService().getEncounterTypeByUuid(ENCOUNTER_TYPE_UUID);
 	}
 	
 	public EncounterRole getEncounterRoleForForms() {
 		return Context.getEncounterService().getEncounterRoleByUuid(ENCOUNTER_ROLE_UUID);
+	}
+	
+	public Concept getDateConceptForForms() {
+		final Integer conceptId = Integer.valueOf(Context.getAdministrationService().getGlobalProperty(
+		    DATE_CONCEPT_FOR_FORMS));
+		final Concept dateConcept = Context.getConceptService().getConcept(conceptId);
+		return dateConcept;
 	}
 	
 	public Form getCultureResultForm() {
@@ -71,7 +80,7 @@ public class CustomHtmlFormsConfig {
 	
 	public Form getHivTestResultForm() {
 		final String formId = Context.getAdministrationService().getGlobalProperty(HIV_TEST_RESULT_FORM_ID_GLOBAL_PROPERTY);
-		final Form hivTestResultForm = Context.getFormService().getForm(formId);
+		final Form hivTestResultForm = Context.getFormService().getForm(Integer.valueOf(formId));
 		return hivTestResultForm;
 	}
 	

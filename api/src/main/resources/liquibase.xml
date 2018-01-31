@@ -369,4 +369,10 @@
                                  baseTableName="customhtmlforms_smear_result" baseColumnNames="changed_by"
                                  referencedTableName="users" referencedColumnNames="user_id"/>
     </changeSet>
+    <changeSet id="customhtmlforms-8" author="ivange94">
+        <addColumn tableName="customhtmlforms_hiv_test_result">
+            <column name="date1" type="DATETIME"/>
+            <column name="date2" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
