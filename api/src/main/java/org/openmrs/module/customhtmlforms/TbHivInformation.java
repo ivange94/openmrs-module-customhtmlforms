@@ -33,6 +33,12 @@ public class TbHivInformation extends BaseOpenmrsData {
 	@JoinColumn(name = "patient")
 	private Patient patient;
 	
+	@Column(name = "hiv_serology_result")
+	private Integer hivSerologyResult;
+	
+	@Column(name = "serology_result_date")
+	private Date serologyResultDate;
+	
 	@Override
 	public Integer getId() {
 		return id;
@@ -81,5 +87,21 @@ public class TbHivInformation extends BaseOpenmrsData {
 	
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+	
+	public Integer getHivSerologyResult() {
+		return hivSerologyResult;
+	}
+	
+	public void setHivSerologyResult(Integer hivSerologyResult) {
+		this.hivSerologyResult = hivSerologyResult;
+	}
+	
+	public Date getSerologyResultDate() {
+		return serologyResultDate;
+	}
+	
+	public void setSerologyResultDate(Date serologyResultDate) {
+		this.serologyResultDate = serologyResultDate;
 	}
 }

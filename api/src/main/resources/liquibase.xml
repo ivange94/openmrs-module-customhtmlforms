@@ -375,4 +375,10 @@
             <column name="date2" type="DATETIME"/>
         </addColumn>
     </changeSet>
+    <changeSet id="customhtmlforms-9" author="ivange94">
+        <addColumn tableName="">
+            <column name="hiv_serology_result" type="int"/>
+            <column name="serology_result_date" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

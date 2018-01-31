@@ -131,6 +131,13 @@
 			Date concept to be used with Html Forms
 		</description>
 	</globalProperty>
+	<globalProperty>
+		<property>@MODULE_ID@.hivTbInformationForm</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Date concept to be used with Html Forms
+		</description>
+	</globalProperty>
 
 
 

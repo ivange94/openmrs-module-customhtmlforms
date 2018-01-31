@@ -14,6 +14,7 @@ import org.openmrs.EncounterRole;
 import org.openmrs.EncounterType;
 import org.openmrs.Form;
 import org.openmrs.api.context.Context;
+import org.openmrs.logic.op.In;
 import org.springframework.stereotype.Component;
 
 /**
@@ -49,6 +50,8 @@ public class CustomHtmlFormsConfig {
 	private static final String SMEAR_RESULT_RESULT_ID = "customhtmlforms.smearResultResultID";
 	
 	private static final String DATE_CONCEPT_FOR_FORMS = "customhtmlforms.dateConceptForForms";
+	
+	private static final String HIV_TB_INFORMATION_FORM = "customhtmlforms.hivTbInformationForm";
 	
 	public EncounterType getEncounterTypeForForms() {
 		return Context.getEncounterService().getEncounterTypeByUuid(ENCOUNTER_TYPE_UUID);
@@ -129,6 +132,13 @@ public class CustomHtmlFormsConfig {
 		final String conceptId = Context.getAdministrationService().getGlobalProperty(SMEAR_RESULT_RESULT_ID);
 		final Concept result = Context.getConceptService().getConcept(conceptId);
 		return result;
+	}
+	
+	public Form getHivTbInformationForm() {
+		final Integer formId = Integer
+		        .valueOf(Context.getAdministrationService().getGlobalProperty(HIV_TB_INFORMATION_FORM));
+		final Form hivTbInformationForm = Context.getFormService().getForm(formId);
+		return hivTbInformationForm;
 	}
 	
 }

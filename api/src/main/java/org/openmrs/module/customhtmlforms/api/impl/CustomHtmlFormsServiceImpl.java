@@ -155,6 +155,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setDateCreated(new Date());
 		encounter.setForm(config.getHivTestResultForm());
 		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		hivTestResult.setEncounter(saved);
 		
 		final Obs result1 = new Obs();
 		result1.setConcept(config.getHivTestResultFormResultOneConcept());
@@ -260,7 +261,33 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setProvider(config.getEncounterRoleForForms(), tbHivInformation.getEncounterProvider());
 		encounter.setEncounterType(config.getEncounterTypeForForms());
 		encounter.setLocation(tbHivInformation.getEncounterLocation());
-		tbHivInformation.setEncounter(encounter);
+		encounter.setCreator(Context.getAuthenticatedUser());
+		encounter.setDateCreated(new Date());
+		encounter.setForm(config.getHivTbInformationForm());
+		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		
+		final Obs serologyResult = new Obs();
+		serologyResult.setConcept(config.getHivTestResultFormResultOneConcept());
+		serologyResult.setPerson(tbHivInformation.getPatient().getPerson());
+		serologyResult.setEncounter(saved);
+		serologyResult.setCreator(Context.getAuthenticatedUser());
+		serologyResult.setDateCreated(new Date());
+		serologyResult.setObsDatetime(new Date());
+		
+		final Concept serologyResultAns = Context.getConceptService().getConcept(tbHivInformation.getHivSerologyResult());
+		serologyResult.setValueCoded(serologyResultAns);
+		Context.getObsService().saveObs(serologyResult, "");
+		
+		final Obs serologyResultDate = new Obs();
+		serologyResultDate.setConcept(config.getDateConceptForForms());
+		serologyResultDate.setPerson(tbHivInformation.getPatient().getPerson());
+		serologyResultDate.setEncounter(saved);
+		serologyResultDate.setCreator(Context.getAuthenticatedUser());
+		serologyResultDate.setDateCreated(new Date());
+		serologyResultDate.setObsDatetime(new Date());
+		serologyResultDate.setValueDate(tbHivInformation.getSerologyResultDate());
+		Context.getObsService().saveObs(serologyResultDate, "");
+		
 		return saveTbHivInformation(tbHivInformation);
 	}
 	

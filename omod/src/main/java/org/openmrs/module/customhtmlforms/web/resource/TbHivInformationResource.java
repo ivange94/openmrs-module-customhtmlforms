@@ -27,6 +27,7 @@ public class TbHivInformationResource extends DataDelegatingCrudResource<TbHivIn
 			final DelegatingResourceDescription description = new DelegatingResourceDescription();
 			description.addProperty("uuid");
 			description.addProperty("display");
+			description.addProperty("encounter");
 			description.addSelfLink();
 			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
 			return description;
@@ -52,19 +53,24 @@ public class TbHivInformationResource extends DataDelegatingCrudResource<TbHivIn
 	
 	@Override
 	public TbHivInformation newDelegate() throws ResourceDoesNotSupportOperationException {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+		return new TbHivInformation();
 	}
 	
 	@Override
 	public DelegatingResourceDescription getCreatableProperties() {
 		final DelegatingResourceDescription description = new DelegatingResourceDescription();
-		description.addProperty("name");
+		description.addProperty("encounterDate");
+		description.addProperty("encounterProvider");
+		description.addProperty("encounterLocation");
+		description.addProperty("patient");
+		description.addProperty("hivSerologyResult");
+		description.addProperty("serologyResultDate");
 		return description;
 	}
 	
 	@Override
 	public TbHivInformation save(TbHivInformation tbHivInformation) {
-		throw new ResourceDoesNotSupportOperationException("Not yet supported");
+		return Context.getService(CustomHtmlFormsService.class).addTbHivInformation(tbHivInformation);
 	}
 	
 	@PropertyGetter("display")
