@@ -91,7 +91,7 @@ public class CustomHtmlFormsConfig {
 	
 	public Form getSmearResultForm() {
 		final String formId = Context.getAdministrationService().getGlobalProperty(SMEAR_RESULT_FORM_ID_GLOBAL_PROPERTY);
-		final Form smearResultForm = Context.getFormService().getForm(formId);
+		final Form smearResultForm = Context.getFormService().getForm(Integer.valueOf(formId));
 		return smearResultForm;
 	}
 	

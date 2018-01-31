@@ -58,7 +58,7 @@ public class SmearResultResourceTest {
 		DelegatingResourceDescription resourceDescription = smearResultResource
 		        .getRepresentationDescription(defaultRepresentation);
 		assertNotNull(resourceDescription);
-		assertThat(resourceDescription.getProperties().keySet(), contains("uuid", "display"));
+		assertThat(resourceDescription.getProperties().keySet(), contains("uuid", "display", "encounter"));
 	}
 	
 	@Test
@@ -70,7 +70,7 @@ public class SmearResultResourceTest {
 		        .getRepresentationDescription(fullRepresentation);
 		assertNotNull(resourceDescription);
 		assertThat(resourceDescription.getProperties().keySet(),
-		    contains("uuid", "display", "encounterDate", "encounterLocation", "encounterProvider", "patient"));
+		    contains("uuid", "display", "encounterDate", "encounterLocation", "encounterProvider", "patient", "encounter"));
 	}
 	
 	@Test

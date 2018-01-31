@@ -24,6 +24,7 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 			final DelegatingResourceDescription description = new DelegatingResourceDescription();
 			description.addProperty("uuid");
 			description.addProperty("display");
+			description.addProperty("encounter", Representation.REF);
 			description.addSelfLink();
 			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
 			return description;
@@ -35,6 +36,7 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 			description.addProperty("encounterLocation", Representation.REF);
 			description.addProperty("encounterProvider", Representation.REF);
 			description.addProperty("patient", Representation.REF);
+			description.addProperty("encounter", Representation.REF);
 			description.addSelfLink();
 			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
 			return description;
