@@ -16,7 +16,7 @@ import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
-@Resource(name = RestConstants.VERSION_1 + "/hivtestresult", supportedClass = HivTestResult.class, supportedOpenmrsVersions = { "2.*.*" })
+@Resource(name = RestConstants.VERSION_1 + "/hivtestresult", supportedClass = HivTestResult.class, supportedOpenmrsVersions = { "1.*.*" })
 public class HivTestResultResource extends DataDelegatingCrudResource<HivTestResult> {
 	
 	@Override
@@ -90,7 +90,7 @@ public class HivTestResultResource extends DataDelegatingCrudResource<HivTestRes
 	
 	@Override
 	public String getResourceVersion() {
-		return "2.0.0";
+		return "1.0.0";
 	}
 	
 	@Override

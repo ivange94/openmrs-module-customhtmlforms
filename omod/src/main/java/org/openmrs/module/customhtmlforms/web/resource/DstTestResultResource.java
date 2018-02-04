@@ -16,7 +16,7 @@ import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
-@Resource(name = RestConstants.VERSION_1 + "/dsttestresult", supportedClass = DstTestResult.class, supportedOpenmrsVersions = { "2.*.*" })
+@Resource(name = RestConstants.VERSION_1 + "/dsttestresult", supportedClass = DstTestResult.class, supportedOpenmrsVersions = { "1.*.*" })
 public class DstTestResultResource extends DataDelegatingCrudResource<DstTestResult> {
 	
 	@Override
@@ -82,7 +82,7 @@ public class DstTestResultResource extends DataDelegatingCrudResource<DstTestRes
 	
 	@Override
 	public String getResourceVersion() {
-		return "2.0.0";
+		return "1.11.6";
 	}
 	
 	@Override

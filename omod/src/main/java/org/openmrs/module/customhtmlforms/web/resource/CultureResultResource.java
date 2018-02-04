@@ -16,7 +16,7 @@ import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
-@Resource(name = RestConstants.VERSION_1 + "/cultureresult", supportedClass = CultureResult.class, supportedOpenmrsVersions = { "2.*.*" })
+@Resource(name = RestConstants.VERSION_1 + "/cultureresult", supportedClass = CultureResult.class, supportedOpenmrsVersions = { "1.*.*" })
 public class CultureResultResource extends DataDelegatingCrudResource<CultureResult> {
 	
 	@Override
@@ -87,7 +87,7 @@ public class CultureResultResource extends DataDelegatingCrudResource<CultureRes
 	
 	@Override
 	public String getResourceVersion() {
-		return "2.0.0";
+		return "1.11.6";
 	}
 	
 	@Override

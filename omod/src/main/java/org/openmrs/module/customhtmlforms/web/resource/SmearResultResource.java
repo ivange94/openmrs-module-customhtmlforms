@@ -15,7 +15,7 @@ import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceD
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
-@Resource(name = RestConstants.VERSION_1 + "/smearresult", supportedClass = SmearResult.class, supportedOpenmrsVersions = { "2.*.*" })
+@Resource(name = RestConstants.VERSION_1 + "/smearresult", supportedClass = SmearResult.class, supportedOpenmrsVersions = { "1.*.*" })
 public class SmearResultResource extends DataDelegatingCrudResource<SmearResult> {
 	
 	@Override
@@ -90,6 +90,6 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 	
 	@Override
 	public String getResourceVersion() {
-		return "2.0.0";
+		return "1.11.6";
 	}
 }
