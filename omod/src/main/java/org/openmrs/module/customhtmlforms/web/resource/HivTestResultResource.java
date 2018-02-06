@@ -90,7 +90,7 @@ public class HivTestResultResource extends DataDelegatingCrudResource<HivTestRes
 	
 	@Override
 	public String getResourceVersion() {
-		return "1.0.0";
+		return "1.9.11";
 	}
 	
 	@Override

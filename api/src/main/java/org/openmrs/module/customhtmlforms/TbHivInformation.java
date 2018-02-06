@@ -2,41 +2,24 @@ package org.openmrs.module.customhtmlforms;
 
 import org.openmrs.*;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "customhtmlforms.TbHivInformation")
-@Table(name = "customhtmlforms_tb_hiv_information")
 public class TbHivInformation extends BaseOpenmrsData {
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "customhtmlforms_tb_hiv_information_id")
 	private Integer id;
 	
-	@Column(name = "encounter_date")
 	private Date encounterDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "encounter_location")
 	private Location encounterLocation;
 	
-	@ManyToOne
-	@JoinColumn(name = "encounter_provider")
 	private Provider encounterProvider;
 	
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "encounter")
 	private Encounter encounter;
 	
-	@ManyToOne
-	@JoinColumn(name = "patient")
 	private Patient patient;
 	
-	@Column(name = "hiv_serology_result")
 	private Integer hivSerologyResult;
 	
-	@Column(name = "serology_result_date")
 	private Date serologyResultDate;
 	
 	@Override

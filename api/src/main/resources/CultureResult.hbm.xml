@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.customhtmlforms">
+
+    <class name="CultureResult" table="customhtmlforms_culture_result" lazy="false">
+
+        <id name="id" type="int" column="customhtmlforms_culture_result_id" unsaved-value="null">
+            <generator class="native" />
+        </id>
+
+        <property name="encounterDate" type="java.util.Date" column="encounter_date" not-null="true" />
+
+        <many-to-one name="encounterLocation" class="org.openmrs.Location" column="encounter_location" not-null="true"/>
+
+        <many-to-one name="encounterProvider" class="org.openmrs.Provider" column="encounter_provider" not-null="true"/>
+
+        <one-to-one name="encounter" class="org.openmrs.Encounter" cascade="all"/>
+
+        <many-to-one name="patient" class="org.openmrs.Patient" not-null="true"/>
+
+        <property name="result" type="java.lang.Integer"/>
+
+        <!--  standard BaseOpenmrsData -->
+        <property name="uuid" type="string" length="38" not-null="true" />
+
+        <many-to-one name="creator" class="org.openmrs.User"
+                     not-null="true" />
+        <property name="dateCreated" type="java.util.Date" column="date_created"
+                  not-null="true" />
+        <many-to-one name="changedBy" class="org.openmrs.User"
+                     column="changed_by" />
+        <property name="dateChanged" type="java.util.Date" column="date_changed" />
+
+        <property name="voided" type="java.lang.Boolean" not-null="true"/>
+
+        <property name="dateVoided" type="java.util.Date" column="date_voided"/>
+
+        <many-to-one name="voidedBy" class="org.openmrs.User" column="voided_by"/>
+
+        <property name="voidReason" type="java.lang.String" column="void_reason"/>
+
+    </class>
+
+</hibernate-mapping>

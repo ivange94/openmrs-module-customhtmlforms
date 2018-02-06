@@ -90,6 +90,6 @@ public class SmearResultResource extends DataDelegatingCrudResource<SmearResult>
 	
 	@Override
 	public String getResourceVersion() {
-		return "1.11.6";
+		return "1.9.11";
 	}
 }

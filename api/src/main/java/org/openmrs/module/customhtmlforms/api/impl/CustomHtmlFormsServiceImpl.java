@@ -18,7 +18,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.customhtmlforms.*;
 import org.openmrs.module.customhtmlforms.api.CustomHtmlFormsService;
-import org.openmrs.module.customhtmlforms.api.dao.CustomHtmlFormsDao;
+import org.openmrs.module.customhtmlforms.db.CustomHtmlFormsDao;
 
 import java.util.Date;
 import java.util.List;
@@ -43,20 +43,6 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 	 */
 	public void setUserService(UserService userService) {
 		this.userService = userService;
-	}
-	
-	@Override
-	public Item getItemByUuid(String uuid) throws APIException {
-		return dao.getItemByUuid(uuid);
-	}
-	
-	@Override
-	public Item saveItem(Item item) throws APIException {
-		if (item.getOwner() == null) {
-			item.setOwner(userService.getUser(1));
-		}
-		
-		return dao.saveItem(item);
 	}
 	
 	@Override
@@ -85,7 +71,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs obsForSampleID = new Obs();
 		obsForSampleID.setConcept(config.getSmearResultSampleConcept());
-		obsForSampleID.setPerson(smearResult.getPatient().getPerson());
+		obsForSampleID.setPerson(smearResult.getPatient());
 		obsForSampleID.setEncounter(saved);
 		obsForSampleID.setCreator(Context.getAuthenticatedUser());
 		obsForSampleID.setDateCreated(new Date());
@@ -95,7 +81,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs obsForSampleType = new Obs();
 		obsForSampleType.setConcept(config.getSmearResultSampleType());
-		obsForSampleType.setPerson(smearResult.getPatient().getPerson());
+		obsForSampleType.setPerson(smearResult.getPatient());
 		obsForSampleType.setEncounter(saved);
 		obsForSampleType.setCreator(Context.getAuthenticatedUser());
 		obsForSampleType.setDateCreated(new Date());
@@ -107,7 +93,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs obsForAppearance = new Obs();
 		obsForAppearance.setConcept(config.getSmearResultAppearance());
-		obsForAppearance.setPerson(smearResult.getPatient().getPerson());
+		obsForAppearance.setPerson(smearResult.getPatient());
 		obsForAppearance.setEncounter(saved);
 		obsForAppearance.setCreator(Context.getAuthenticatedUser());
 		obsForAppearance.setDateCreated(new Date());
@@ -119,7 +105,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs obsForResult = new Obs();
 		obsForResult.setConcept(config.getSmearResultResult());
-		obsForResult.setPerson(smearResult.getPatient().getPerson());
+		obsForResult.setPerson(smearResult.getPatient());
 		obsForResult.setEncounter(saved);
 		obsForResult.setCreator(Context.getAuthenticatedUser());
 		obsForResult.setDateCreated(new Date());
@@ -159,7 +145,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs result1 = new Obs();
 		result1.setConcept(config.getHivTestResultFormResultOneConcept());
-		result1.setPerson(hivTestResult.getPatient().getPerson());
+		result1.setPerson(hivTestResult.getPatient());
 		result1.setEncounter(saved);
 		result1.setCreator(Context.getAuthenticatedUser());
 		result1.setDateCreated(new Date());
@@ -172,7 +158,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs result2 = new Obs();
 		result2.setConcept(config.getHivTestResultFormResultTwoConcept());
-		result2.setPerson(hivTestResult.getPatient().getPerson());
+		result2.setPerson(hivTestResult.getPatient());
 		result2.setEncounter(saved);
 		result2.setCreator(Context.getAuthenticatedUser());
 		result2.setDateCreated(new Date());
@@ -186,7 +172,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs date1 = new Obs();
 		date1.setConcept(config.getDateConceptForForms());
-		date1.setPerson(hivTestResult.getPatient().getPerson());
+		date1.setPerson(hivTestResult.getPatient());
 		date1.setEncounter(saved);
 		date1.setCreator(Context.getAuthenticatedUser());
 		date1.setDateCreated(new Date());
@@ -196,7 +182,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs date2 = new Obs();
 		date2.setConcept(config.getDateConceptForForms());
-		date2.setPerson(hivTestResult.getPatient().getPerson());
+		date2.setPerson(hivTestResult.getPatient());
 		date2.setEncounter(saved);
 		date2.setCreator(Context.getAuthenticatedUser());
 		date2.setDateCreated(new Date());
@@ -268,7 +254,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs serologyResult = new Obs();
 		serologyResult.setConcept(config.getHivTestResultFormResultOneConcept());
-		serologyResult.setPerson(tbHivInformation.getPatient().getPerson());
+		serologyResult.setPerson(tbHivInformation.getPatient());
 		serologyResult.setEncounter(saved);
 		serologyResult.setCreator(Context.getAuthenticatedUser());
 		serologyResult.setDateCreated(new Date());
@@ -280,7 +266,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs serologyResultDate = new Obs();
 		serologyResultDate.setConcept(config.getDateConceptForForms());
-		serologyResultDate.setPerson(tbHivInformation.getPatient().getPerson());
+		serologyResultDate.setPerson(tbHivInformation.getPatient());
 		serologyResultDate.setEncounter(saved);
 		serologyResultDate.setCreator(Context.getAuthenticatedUser());
 		serologyResultDate.setDateCreated(new Date());
@@ -321,7 +307,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		
 		final Obs obs = new Obs();
 		obs.setConcept(config.getCultureResultFormResultConcept());
-		obs.setPerson(cultureResult.getPatient().getPerson());
+		obs.setPerson(cultureResult.getPatient());
 		obs.setEncounter(saved);
 		obs.setCreator(Context.getAuthenticatedUser());
 		obs.setDateCreated(new Date());
