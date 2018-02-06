@@ -68,6 +68,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setDateCreated(new Date());
 		encounter.setForm(config.getSmearResultForm());
 		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		smearResult.setEncounter(saved);
 		
 		final Obs obsForSampleID = new Obs();
 		obsForSampleID.setConcept(config.getSmearResultSampleConcept());
@@ -115,7 +116,6 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		obsForResult.setValueCoded(answerForResult);
 		Context.getObsService().saveObs(obsForResult, "");
 		
-		smearResult.setEncounter(saved);
 		return saveSmearResult(smearResult);
 	}
 	
@@ -251,6 +251,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setDateCreated(new Date());
 		encounter.setForm(config.getHivTbInformationForm());
 		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		tbHivInformation.setEncounter(saved);
 		
 		final Obs serologyResult = new Obs();
 		serologyResult.setConcept(config.getHivTestResultFormResultOneConcept());
@@ -304,6 +305,7 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		encounter.setDateCreated(new Date());
 		encounter.setForm(config.getCultureResultForm());
 		final Encounter saved = Context.getEncounterService().saveEncounter(encounter);
+		cultureResult.setEncounter(saved);
 		
 		final Obs obs = new Obs();
 		obs.setConcept(config.getCultureResultFormResultConcept());
@@ -317,7 +319,6 @@ public class CustomHtmlFormsServiceImpl extends BaseOpenmrsService implements Cu
 		Concept answerConcept = Context.getConceptService().getConcept(answerConceptId);
 		obs.setValueCoded(answerConcept);
 		Context.getObsService().saveObs(obs, "");
-		cultureResult.setEncounter(saved);
 		return saveCultureResult(cultureResult);
 	}
 }
