@@ -25,11 +25,13 @@
 		<class>org.openmrs.module.customhtmlforms.web.extension.html.GutterListExt</class>
 	</extension>
 
-
-	<extension>
-		<point>org.openmrs.gutter.tools</point>
-		<class>org.openmrs.module.customhtmlforms.extension.html.GutterListExt</class>
-	</extension>
+	<mappingFiles>
+		CultureResult.hbm.xml
+		DstTestResult.hbm.xml
+		HivTestResult.hbm.xml
+		SmearResult.hbm.xml
+		TbHivInformation.hbm.xml
+	</mappingFiles>
 
 	<aware_of_modules>
 		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
