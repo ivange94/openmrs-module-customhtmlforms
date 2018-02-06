@@ -376,7 +376,7 @@
         </addColumn>
     </changeSet>
     <changeSet id="customhtmlforms-9" author="ivange94">
-        <addColumn tableName="">
+        <addColumn tableName="customhtmlforms_tb_hiv_information">
             <column name="hiv_serology_result" type="int"/>
             <column name="serology_result_date" type="DATETIME"/>
         </addColumn>
