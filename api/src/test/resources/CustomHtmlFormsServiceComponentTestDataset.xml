@@ -11,7 +11,7 @@
 
 -->
 <dataset>
-    <customhtmlforms_smear_result customhtmlforms_smear_result_id="1" uuid="1d5476e9-ee2c-427e-95a7-f87294a352ad" creator="1" date_created="2017-10-27 00:00:00.0" voided="false"/>
+    <customhtmlforms_smear_result customhtmlforms_smear_result_id="1" encounter_date="2017-10-27 00:00:00.0" encounter_location="1" encounter_provider="1" uuid="1d5476e9-ee2c-427e-95a7-f87294a352ad" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" patient="70011"/>
 
     <encounter_type encounter_type_id="1001" name="Encounter for forms" description="Ordering radiology exams" creator="1" date_created="2015-09-09 00:00:00.0" retired="false" uuid="b6eb5073-a470-478a-8b74-bf788485f6af"/>
     <encounter_role encounter_role_id="1001" name="Encounter for forms" description="Provider ordering tests, exams, drugs, ..." creator="1" retired="false" date_created="2015-09-09 14:00:00.0" uuid="890a3f0e-84d5-43f1-8a2f-4da6e1260b07" />
@@ -22,11 +22,11 @@
     <patient patient_id="70011" creator="1" date_created="2015-01-01 00:00:00.0" voided="false"/>
     <patient_identifier patient_identifier_id="1" patient_id="70011" identifier="1234" identifier_type="1" preferred="1" location_id="1" creator="1" date_created="2015-01-01 00:00:00.0" voided="false" uuid="1ac98ec8-e9d9-4626-998c-c795c2f0aa9f"/>
 
-    <customhtmlforms_hiv_test_result customhtmlforms_hiv_test_result_id="1" uuid="925825cf-6165-4137-ba35-1773a7c25bb4" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0"/>
+    <customhtmlforms_hiv_test_result customhtmlforms_hiv_test_result_id="1" encounter_location="1" encounter_provider="1" uuid="925825cf-6165-4137-ba35-1773a7c25bb4" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0" patient="70011"/>
 
-    <customhtmlforms_dst_test_result customhtmlforms_dst_test_result_id="1" uuid="925825cf-6165-4137-ba35-1773a7c25b2e" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0"/>
+    <customhtmlforms_dst_test_result customhtmlforms_dst_test_result_id="1" encounter_location="1" encounter_provider="1" uuid="925825cf-6165-4137-ba35-1773a7c25b2e" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0" patient="70011"/>
 
-    <customhtmlforms_tb_hiv_information customhtmlforms_tb_hiv_information_id="1" uuid="8b51a784-f3bd-458e-a1f2-56dfa5c3c8c8" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0"/>
+    <customhtmlforms_tb_hiv_information customhtmlforms_tb_hiv_information_id="1" encounter_location="1" encounter_provider="1" uuid="8b51a784-f3bd-458e-a1f2-56dfa5c3c8c8" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" encounter_date="2017-10-27 00:00:00.0" patient="70011"/>
 
-    <customhtmlforms_culture_result customhtmlforms_culture_result_id="1" uuid="a23f02a6-953e-423e-ac3a-48c1c2174cdc" creator="1" date_created="2017-10-27 00:00:00.0" voided="false"/>
+    <customhtmlforms_culture_result customhtmlforms_culture_result_id="1" encounter_date="2017-10-27 00:00:00.0" encounter_location="1" encounter_provider="1" uuid="a23f02a6-953e-423e-ac3a-48c1c2174cdc" creator="1" date_created="2017-10-27 00:00:00.0" voided="false" patient="70011"/>
 </dataset>

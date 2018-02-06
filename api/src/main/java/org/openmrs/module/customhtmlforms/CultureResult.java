@@ -5,35 +5,20 @@ import org.openmrs.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "customhtmlforms.CultureResult")
-@Table(name = "customhtmlforms_culture_result")
 public class CultureResult extends BaseOpenmrsData {
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "customhtmlforms_culture_result_id")
 	private Integer id;
 	
-	@Column(name = "encounter_date")
 	private Date encounterDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "encounter_location")
 	private Location encounterLocation;
 	
-	@ManyToOne
-	@JoinColumn(name = "encounter_provider")
 	private Provider encounterProvider;
 	
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "encounter")
 	private Encounter encounter;
 	
-	@ManyToOne
-	@JoinColumn(name = "patient")
 	private Patient patient;
 	
-	@Column(name = "result")
 	private Integer result;
 	
 	@Override

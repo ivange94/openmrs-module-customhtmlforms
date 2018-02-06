@@ -34,7 +34,11 @@
         </property>
         <property name="target">
             <bean class="org.openmrs.module.customhtmlforms.api.impl.CustomHtmlFormsServiceImpl">
-                <property name="dao" ref="customhtmlforms.CustomHtmlFormsDao" />
+                <property name="dao">
+                    <bean class="org.openmrs.module.customhtmlforms.db.hibernate.HibernateCustomHtmlFormsDao">
+                        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+                    </bean>
+                </property>
             </bean>
         </property>
         <property name="preInterceptors">

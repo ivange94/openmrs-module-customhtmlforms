@@ -1,103 +1,102 @@
-/**
- * This Source Code Form is subject to the terms of the Mozilla Public License,
- * v. 2.0. If a copy of the MPL was not distributed with this file, You can
- * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
- * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
- *
- * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
- * graphic logo is a trademark of OpenMRS Inc.
- */
-package org.openmrs.module.customhtmlforms.api.dao;
+package org.openmrs.module.customhtmlforms.db.hibernate;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.api.db.hibernate.DbSession;
 import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.customhtmlforms.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.openmrs.module.customhtmlforms.db.CustomHtmlFormsDao;
 
 import java.util.List;
 
-@Repository("customhtmlforms.CustomHtmlFormsDao")
-public class CustomHtmlFormsDao {
+public class HibernateCustomHtmlFormsDao implements CustomHtmlFormsDao {
 	
-	@Autowired
-	DbSessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
-	private DbSession getSession() {
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	public Item getItemByUuid(String uuid) {
-		return (Item) getSession().createCriteria(Item.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
-	}
-	
-	public Item saveItem(Item item) {
-		getSession().saveOrUpdate(item);
-		return item;
-	}
-	
+	@Override
 	public SmearResult getSmearResultByUuid(String uuid) {
 		return (SmearResult) getSession().createCriteria(SmearResult.class).add(Restrictions.eq("uuid", uuid))
 		        .uniqueResult();
 	}
 	
+	@Override
 	public SmearResult saveSmearResult(SmearResult smearResult) {
 		getSession().saveOrUpdate(smearResult);
 		return smearResult;
 	}
 	
+	@Override
 	public HivTestResult getHivTestResultByUuid(String uuid) {
 		return (HivTestResult) getSession().createCriteria(HivTestResult.class).add(Restrictions.eq("uuid", uuid))
 		        .uniqueResult();
 	}
 	
+	@Override
 	public List<HivTestResult> getAllHivTestResults() {
 		return (List<HivTestResult>) getSession().createCriteria(HivTestResult.class).list();
 	}
 	
+	@Override
 	public HivTestResult saveHivTestResult(HivTestResult hivTestResult) {
 		getSession().saveOrUpdate(hivTestResult);
 		return hivTestResult;
 	}
 	
+	@Override
 	public DstTestResult getDstTestResultByUuid(String uuid) {
 		return (DstTestResult) getSession().createCriteria(DstTestResult.class).add(Restrictions.eq("uuid", uuid))
 		        .uniqueResult();
 	}
 	
+	@Override
 	public List<DstTestResult> getAllDstTestResults() {
 		return (List<DstTestResult>) getSession().createCriteria(DstTestResult.class).list();
 	}
 	
+	@Override
 	public DstTestResult saveDstTestResult(DstTestResult dstTestResult) {
 		getSession().saveOrUpdate(dstTestResult);
 		return dstTestResult;
 	}
 	
+	@Override
 	public TbHivInformation getTbHivInformationByUuid(String uuid) {
 		return (TbHivInformation) getSession().createCriteria(TbHivInformation.class).add(Restrictions.eq("uuid", uuid))
 		        .uniqueResult();
 	}
 	
+	@Override
 	public List<TbHivInformation> getAllTbInformation() {
 		return (List<TbHivInformation>) getSession().createCriteria(TbHivInformation.class).list();
 	}
 	
+	@Override
 	public TbHivInformation saveTbHivInformation(TbHivInformation tbHivInformation) {
 		getSession().saveOrUpdate(tbHivInformation);
 		return tbHivInformation;
 	}
 	
+	@Override
 	public CultureResult getCultureResultByUuid(String uuid) {
 		return (CultureResult) getSession().createCriteria(CultureResult.class).add(Restrictions.eq("uuid", uuid))
 		        .uniqueResult();
 	}
 	
+	@Override
 	public List<CultureResult> getAllCultureResults() {
 		return (List<CultureResult>) getSession().createCriteria(CultureResult.class).list();
 	}
 	
+	@Override
 	public CultureResult saveCultureResult(CultureResult cultureResult) {
 		getSession().saveOrUpdate(cultureResult);
 		return cultureResult;

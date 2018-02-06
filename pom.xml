@@ -52,7 +52,22 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<target>1.6</target>
+						<source>1.6</source>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
     <properties>
-        <openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+        <openmrsPlatformVersion>1.9.11</openmrsPlatformVersion>
     </properties>
 </project>
