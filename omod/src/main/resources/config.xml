@@ -21,8 +21,8 @@
 	
 	<!-- Extensions -->
 	<extension>
-		<point>org.openmrs.admin.list</point>
-		<class>org.openmrs.module.customhtmlforms.extension.html.AdminList</class>
+		<point>org.openmrs.gutter.tools</point>
+		<class>org.openmrs.module.customhtmlforms.web.extension.html.GutterListExt</class>
 	</extension>
 
 
